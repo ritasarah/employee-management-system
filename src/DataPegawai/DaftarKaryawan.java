@@ -6,6 +6,7 @@
 
 package DataPegawai;
 
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 
 /**
@@ -79,5 +85,5 @@ public class DaftarKaryawan {
 	//TODO
 	
     }
-    
+
 }

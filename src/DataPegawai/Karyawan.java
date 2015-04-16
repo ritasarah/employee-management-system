@@ -18,6 +18,10 @@ public class Karyawan {
 	alamat = inAlamat;
 	hariAvailable = inHari;
     }
+
+    public String getNama() {
+        return nama;
+    }       
     
     public Karyawan(String inNama, String inNIP, String inHP, String inAlamat){
 	nama = inNama;
@@ -25,6 +29,7 @@ public class Karyawan {
 	no_hp = inHP;
 	alamat = inAlamat;
     }
+    
     @Override
     public String toString(){
 	String karString = "Nama : " + nama + "\nNIP : " + nip + "\nHP : " + no_hp + "\nAlamat : " + alamat + "\n";
