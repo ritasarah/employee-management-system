@@ -1,4 +1,8 @@
+
 package GUI;
+
+import DataPegawai.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,20 +30,21 @@ public class FormView extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableGaji = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox();
-        jPanel3 = new javax.swing.JPanel();
+        viewDataPegawai = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tableDataPegawai = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tableJadwalPagi = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tableJadwalMalam = new javax.swing.JTable();
         generateJadwal = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox();
         jPanel5 = new javax.swing.JPanel();
@@ -134,7 +139,7 @@ public class FormView extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel15.setText("Gaji Bulan");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableGaji.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -151,7 +156,7 @@ public class FormView extends javax.swing.JFrame {
                 "Nama", "Absensi", "Presensi", "Rate Gaji", "Gaji Total"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tableGaji);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -169,7 +174,7 @@ public class FormView extends javax.swing.JFrame {
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +185,7 @@ public class FormView extends javax.swing.JFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("View Gaji", jPanel2);
@@ -188,56 +193,72 @@ public class FormView extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel16.setText("Data Pegawai");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
+        DaftarKaryawan datakar = new DaftarKaryawan();
+        Object[][] tempdatakar = new Object [datakar.listKaryawan.size()][7];
+        for(int i = 0 ; i<datakar.listKaryawan.size();i++){
+            tempdatakar[i][1]=datakar.getKaryawanByID(i).getNama();
+        }
+        tableDataPegawai.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {tempdatakar,
+                {datakar.getKaryawanByID(1).getNama(), null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Nama", "Alamat", "No HP", "Status", "Hari", "Absensi", "Presensi"
             }
-        ));
-        jScrollPane3.setViewportView(jTable2);
+        )  );
+        tableDataPegawai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableDataPegawaiMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tableDataPegawai);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        jButton3.setText("Edit Field");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout viewDataPegawaiLayout = new javax.swing.GroupLayout(viewDataPegawai);
+        viewDataPegawai.setLayout(viewDataPegawaiLayout);
+        viewDataPegawaiLayout.setHorizontalGroup(
+            viewDataPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewDataPegawaiLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel16)
-                .addContainerGap(426, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addComponent(jButton3)
+                .addContainerGap(89, Short.MAX_VALUE))
+            .addGroup(viewDataPegawaiLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        viewDataPegawaiLayout.setVerticalGroup(
+            viewDataPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewDataPegawaiLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(jLabel16)
+                .addGroup(viewDataPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(jButton3))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("View Data Pegawai", jPanel3);
+        jTabbedPane1.addTab("View Data Pegawai", viewDataPegawai);
+        viewDataPegawai.getAccessibleContext().setAccessibleName("");
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel17.setText("Jadwal Bulan");
 
         jLabel18.setText("Pagi");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tableJadwalPagi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -250,11 +271,11 @@ public class FormView extends javax.swing.JFrame {
                 "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"
             }
         ));
-        jScrollPane4.setViewportView(jTable3);
+        jScrollPane4.setViewportView(tableJadwalPagi);
 
         jLabel19.setText("Malam");
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tableJadwalMalam.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -267,7 +288,7 @@ public class FormView extends javax.swing.JFrame {
                 "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"
             }
         ));
-        jScrollPane5.setViewportView(jTable4);
+        jScrollPane5.setViewportView(tableJadwalMalam);
 
         generateJadwal.setText("Generate");
         generateJadwal.addActionListener(new java.awt.event.ActionListener() {
@@ -307,7 +328,7 @@ public class FormView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(generateJadwal)
                                 .addGap(22, 22, 22)))))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,7 +346,7 @@ public class FormView extends javax.swing.JFrame {
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("View Jadwal", jPanel4);
@@ -468,7 +489,7 @@ public class FormView extends javax.swing.JFrame {
                                             .addComponent(jLabel31)
                                             .addComponent(jLabel30)
                                             .addComponent(jLabel29))))
-                                .addGap(0, 144, Short.MAX_VALUE))
+                                .addGap(0, 14, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
                                 .addGap(42, 42, 42)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -607,7 +628,7 @@ public class FormView extends javax.swing.JFrame {
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(nontraineeHall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel51)))
-                        .addContainerGap(44, Short.MAX_VALUE))))
+                        .addContainerGap(22, Short.MAX_VALUE))))
         );
 
         jTabbedPane1.addTab("Settings", jPanel5);
@@ -775,7 +796,7 @@ public class FormView extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jButton1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                                         .addComponent(jButton2))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -904,7 +925,7 @@ public class FormView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Form Data Pegawai", jPanel1);
@@ -913,9 +934,7 @@ public class FormView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -985,6 +1004,18 @@ public class FormView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
+    private void tableDataPegawaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDataPegawaiMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tableDataPegawaiMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String name=JOptionPane.showInputDialog("Enter Info");
+        tableDataPegawai.getModel().setValueAt(name,tableDataPegawai.getSelectedRow(),tableDataPegawai.getSelectedColumn());
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1025,6 +1056,7 @@ public class FormView extends javax.swing.JFrame {
     private javax.swing.JButton generateJadwal;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
@@ -1095,7 +1127,6 @@ public class FormView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
@@ -1103,10 +1134,6 @@ public class FormView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -1122,10 +1149,15 @@ public class FormView extends javax.swing.JFrame {
     private javax.swing.JTextField nontraineeHall;
     private javax.swing.JTextField nontraineeKasir;
     private javax.swing.JTextField nontraineeMasak;
+    private javax.swing.JTable tableDataPegawai;
+    private javax.swing.JTable tableGaji;
+    private javax.swing.JTable tableJadwalMalam;
+    private javax.swing.JTable tableJadwalPagi;
     private javax.swing.JTextField traineeBartender;
     private javax.swing.JTextField traineeCuci;
     private javax.swing.JTextField traineeHall;
     private javax.swing.JTextField traineeKasir;
     private javax.swing.JTextField traineeMasak;
+    private javax.swing.JPanel viewDataPegawai;
     // End of variables declaration//GEN-END:variables
 }
