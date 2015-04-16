@@ -11,6 +11,7 @@ import java.util.List;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -73,7 +74,7 @@ public class DaftarKaryawan {
 	    res = st.executeQuery("SELECT * FROM `pegawai`");
 	    while(res.next()){
 		//konstruktur kar String inNama, String inNIP, String inHP, String inAlamat
-		listKaryawan.add(new Karyawan (res.getString("nama"), res.getString("nip"), res.getString("no_hp"), res.getString("alamat"), res.getString("id_rate_gaji")));
+		listKaryawan.add(new Karyawan (res.getString("nama"), res.getInt("nip"), res.getString("no_hp"), res.getString("alamat"), res.getInt("id_rate_gaji")));
 	    }
 	    conn.close();
 	}
@@ -97,12 +98,12 @@ public class DaftarKaryawan {
 	
     }
     
-    public Karyawan getKaryawanByID(String ID){
+    public Karyawan getKaryawanByID(int ID){
 	//TODO
 	boolean found = false;
 	int index = 0;
 	while (!found && index < listKaryawan.size()){
-	    if (listKaryawan.get(index).getNip().compareTo(ID) == 0 ){
+	    if (listKaryawan.get(index).getNip() == ID){
 		found = true;
 	    }
 	    else {
@@ -113,13 +114,13 @@ public class DaftarKaryawan {
 	    return listKaryawan.get(index);
 	}
 	
-	return new Karyawan("Empty", "Empty", "Empty", "Empty", "Empty");
+	return new Karyawan("Empty", 0, "Empty", "Empty", 12);
     }
-    public void deleteKaryawanByID(String ID){
+    public void deleteKaryawanByID(int ID){
 	boolean found = false;
 	int index = 0;
 	while (!found && index < listKaryawan.size()){
-	    if (listKaryawan.get(index).getNip().compareTo(ID) == 0 ){
+	    if (listKaryawan.get(index).getNip() == (ID)){
 		found = true;
 	    }
 	    else {
@@ -137,7 +138,7 @@ public class DaftarKaryawan {
 	
     }
     public void editKaryawanByID(Karyawan newData){
-	String ID = newData.getNip();
+	int ID = newData.getNip();
 	boolean found = false;
 	int index = 0;
 	    
@@ -151,8 +152,44 @@ public class DaftarKaryawan {
 	    getListKaryawan();
     }
     
-    public void addKaryawan(){
-	//TODO
+    public void addKaryawan(Karyawan newGuy){
+	String url = "jdbc:mysql://localhost:3306/employee_management";
+	String driver = "com.mysql.jdbc.Driver";
+	String userName = "root"; 
+	String password = "";
+	
+	ResultSet res = null;
+	PreparedStatement st = null;
+	try{
+	    Class.forName(driver).newInstance();
+	    Connection conn = DriverManager.getConnection(url,userName,password);
+	    String theQuery = "INSERT INTO `pegawai` (`no_hp`, `nama`, `alamat`, `id_rate_gaji`) VALUES (\'" +
+							newGuy.getNo_hp() + "\', \'" + newGuy.getNama() + "\', \'" + newGuy.getAlamat() + 
+							"\', \'" + newGuy.getId_rate_gaji() + "\')";
+	    st = conn.prepareStatement(theQuery, Statement.RETURN_GENERATED_KEYS);
+	    st.executeUpdate();
+	    int auto_id = -99;
+	    //if(returnLastInsertId) {
+		ResultSet rs = st.getGeneratedKeys();
+		rs.next();
+		auto_id = rs.getInt(1);
+	    //}   
+	    conn.close();
+	    if (auto_id != -99){
+		DKExec("INSERT INTO `karyawan` (`nip`) VALUES (" + auto_id + ")");
+	    }
+	}
+	catch (SQLException ex){
+	    
+	    System.out.println("SQLException: " + ex.getMessage());
+	    System.out.println("SQLState: " + ex.getSQLState());
+	    System.out.println("VendorError: " + ex.getErrorCode());
+	    
+	}
+	catch (Exception ex){
+	    System.out.println(ex.toString());
+	}
+	    getListKaryawan();
     }
     
 }
