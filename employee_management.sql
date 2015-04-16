@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2015 at 11:26 AM
+-- Generation Time: Apr 16, 2015 at 03:04 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `jadwal_pegawai` (
 
 CREATE TABLE IF NOT EXISTS `karyawan` (
 `nip` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `karyawan`
@@ -70,7 +70,22 @@ INSERT INTO `karyawan` (`nip`) VALUES
 (17),
 (18),
 (19),
-(20);
+(20),
+(21),
+(22),
+(23),
+(24),
+(25),
+(26),
+(27),
+(28),
+(29),
+(30),
+(31),
+(32),
+(33),
+(34),
+(35);
 
 -- --------------------------------------------------------
 
@@ -96,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `pegawai` (
   `nama` varchar(20) NOT NULL,
   `alamat` varchar(50) NOT NULL,
   `id_rate_gaji` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `pegawai`
@@ -112,7 +127,22 @@ INSERT INTO `pegawai` (`nip`, `no_hp`, `nama`, `alamat`, `id_rate_gaji`) VALUES
 (17, 899, 'GGG', 'Jl Riau', 27),
 (18, 899, 'HHH', 'Jl Merdeka', 28),
 (19, 899, 'III', 'Tubagus Ismail', 29),
-(20, 899, 'JJJ', 'Kanayakan', 30);
+(20, 899, 'JJJ', 'Kanayakan', 30),
+(21, 899, 'KKK', 'Skagen 21', 21),
+(22, 899, 'LLL', 'Bandung', 22),
+(23, 899, 'MMM', 'Jakarta', 23),
+(24, 899, 'NNN', 'Surabaya', 24),
+(25, 899, 'OOO', 'Coblong', 25),
+(26, 899, 'PPP', 'Dago', 26),
+(27, 899, 'QQQ', 'Jl Riau', 27),
+(28, 899, 'RRR', 'Jl Merdeka', 28),
+(29, 899, 'TTT', 'Tubagus Ismail', 29),
+(30, 899, 'UUU', 'Kanayakan', 30),
+(31, 899, 'VVV', 'Dago', 26),
+(32, 899, 'XXX', 'Jl Riau', 27),
+(33, 899, 'YYY', 'Jl Merdeka', 28),
+(34, 899, 'ZZZ', 'Tubagus Ismail', 29),
+(35, 899, 'WWW', 'Kanayakan', 30);
 
 -- --------------------------------------------------------
 
@@ -186,9 +216,54 @@ INSERT INTO `shift_available_pegawai` (`nip_pegawai`, `id_shift`) VALUES
 (19, 11),
 (19, 12),
 (19, 13),
-(20, 14),
 (20, 13),
-(20, 14);
+(20, 14),
+(20, 12),
+(21, 1),
+(21, 2),
+(21, 3),
+(22, 4),
+(22, 5),
+(22, 6),
+(23, 7),
+(23, 8),
+(23, 9),
+(24, 10),
+(24, 11),
+(24, 14),
+(25, 1),
+(25, 2),
+(25, 3),
+(26, 4),
+(26, 5),
+(26, 6),
+(27, 7),
+(27, 8),
+(27, 9),
+(28, 10),
+(28, 11),
+(28, 12),
+(29, 13),
+(29, 14),
+(29, 1),
+(30, 2),
+(30, 3),
+(30, 4),
+(31, 5),
+(31, 6),
+(31, 7),
+(32, 8),
+(32, 9),
+(32, 10),
+(33, 11),
+(33, 12),
+(33, 13),
+(34, 14),
+(34, 1),
+(34, 2),
+(35, 3),
+(35, 4),
+(35, 5);
 
 -- --------------------------------------------------------
 
@@ -235,7 +310,14 @@ CREATE TABLE IF NOT EXISTS `system_setting` (
   `min_kasir` int(11) NOT NULL,
   `min_bartender` int(11) NOT NULL,
   `min_hall` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `system_setting`
+--
+
+INSERT INTO `system_setting` (`id`, `min_cuci`, `min_masak`, `min_kasir`, `min_bartender`, `min_hall`) VALUES
+(1, 2, 2, 2, 2, 2);
 
 --
 -- Indexes for dumped tables
@@ -308,7 +390,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `karyawan`
 --
 ALTER TABLE `karyawan`
-MODIFY `nip` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+MODIFY `nip` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `manager`
 --
@@ -318,7 +400,7 @@ MODIFY `nip` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-MODIFY `nip` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+MODIFY `nip` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `rate_gaji`
 --
@@ -333,7 +415,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 -- AUTO_INCREMENT for table `system_setting`
 --
 ALTER TABLE `system_setting`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
