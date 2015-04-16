@@ -20,6 +20,7 @@ public class SI {
 			System.out.println(sk.getId());
 			System.out.println(sk.getHari());
 			System.out.println(sk.getJam());
+			System.out.println("jumlah available="+sk.getListKaryawanAvailable().size());
 			System.out.println(sk.printListKaryawanAvail());
 			System.out.println("------");
 			

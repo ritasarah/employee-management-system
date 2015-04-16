@@ -24,48 +24,44 @@ public class DaftarKaryawan {
     public List<Karyawan> listKaryawan;
     
     public DaftarKaryawan(){
-	listKaryawan = new ArrayList();
+		listKaryawan = new ArrayList();
     }
     
     public void getListKaryawan(){
-	String url = "jdbc:mysql://localhost:3306/employee_management";
-	String driver = "com.mysql.jdbc.Driver";
-	String userName = "root"; 
-	String password = "";
-	
-	ResultSet res = null;
-	Statement st = null;
-	try{
-	    Class.forName(driver).newInstance();
-	    Connection conn = DriverManager.getConnection(url,userName,password);
-	    st = conn.createStatement();
-	    res = st.executeQuery("SELECT * FROM `pegawai`");
-	    while(res.next()){
-		//konstruktur kar String inNama, String inNIP, String inHP, String inAlamat
-		listKaryawan.add(new Karyawan (res.getString("nama"), res.getString("nip"), res.getString("no_hp"), res.getString("alamat")));
-		
-	    }
-	    
-	    checkList();
-	}
-	catch (SQLException ex){
-	    
-	    System.out.println("SQLException: " + ex.getMessage());
-	    System.out.println("SQLState: " + ex.getSQLState());
-	    System.out.println("VendorError: " + ex.getErrorCode());
-	}
-	catch (Exception ex){
-	    System.out.println(ex.toString());
-	}
+		String url = "jdbc:mysql://localhost:3306/employee_management";
+		String driver = "com.mysql.jdbc.Driver";
+		String userName = "root"; 
+		String password = "";
 
-	
+		ResultSet res = null;
+		Statement st = null;
+		try{
+			Class.forName(driver).newInstance();
+			Connection conn = DriverManager.getConnection(url,userName,password);
+			st = conn.createStatement();
+			res = st.executeQuery("SELECT * FROM `pegawai`");
+			while(res.next()){
+				//konstruktur kar String inNama, String inNIP, String inHP, String inAlamat
+				listKaryawan.add(new Karyawan (res.getString("nama"), res.getString("nip"), res.getString("no_hp"), res.getString("alamat")));
+			}
+
+			checkList();
+		}
+		catch (SQLException ex){
+
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+		}
+		catch (Exception ex){
+			System.out.println(ex.toString());
+		}	
     }
     
     public void checkList(){
-	for (int i = 0; i < listKaryawan.size(); i++){
-	    System.out.println(listKaryawan.get(i).toString());
-	}
-	
+		for (int i = 0; i < listKaryawan.size(); i++){
+			System.out.println(listKaryawan.get(i).toString());
+		}
     }
     
     public Karyawan getKaryawanByID(int ID){
