@@ -1,5 +1,11 @@
 package DataPegawai;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,24 +14,41 @@ import java.util.List;
  * @author Cilvia
  */
 public class ShiftKerja {
+	private int id;
     private String jam, hari;
-	private List<Karyawan> listOfKaryawan;
-	private List<Karyawan> listKaryawanAvailable;
+	private List<Integer> listOfKaryawan;
+	private List<Integer> listKaryawanAvailable;
 	
 	public ShiftKerja(){
 		listOfKaryawan = new ArrayList<>();
 		listKaryawanAvailable = new ArrayList<>();
 	}
 	
-	public List<Karyawan> getListOfKaryawan(){
+	public ShiftKerja(int _id, String j, String h){
+		listOfKaryawan = new ArrayList<>();
+		listKaryawanAvailable = new ArrayList<>();
+		id = _id;
+		jam = j;
+		hari = h;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
+	}
+	
+	public List<Integer> getListOfKaryawan(){
 		return listOfKaryawan;
 	}
 	
-	public void setListOfKaryawan(List<Karyawan> listKaryawan){
+	public void setListOfKaryawan(List<Integer> listKaryawan){
 		listOfKaryawan = listKaryawan;
 	}
 	
-	public void putKaryawan(Karyawan org){
+	public void putKaryawan(int org){
 		listOfKaryawan.add(org);
 	}
 	
@@ -43,6 +66,37 @@ public class ShiftKerja {
 	
 	public void setHari(String h){
 		hari = h;
+	}
+	
+	public void getListKaryawanAvailFromDB(){
+		String url = "jdbc:mysql://localhost:3306/employee_management";
+		String driver = "com.mysql.jdbc.Driver";
+		String userName = "root"; 
+		String password = "";
+		try{
+			Class.forName(driver).newInstance();
+			Connection conn = DriverManager.getConnection(url,userName,password);
+			Statement st = conn.createStatement();
+			ResultSet res = st.executeQuery("Select nip_pegawai from shift_available_pegawai where id_shift = " + id);
+			
+			while(res.next()){
+				listKaryawanAvailable.add(res.getInt("nip_pegawai"));
+			}
+			conn.close();
+		}catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+		}
+	}
+	
+	public void assignShiftKaryawan(){
+		
+	}
+	
+	public String printListKaryawanAvail(){
+		String result = "";
+		for(Integer nip: listKaryawanAvailable){
+			result += nip + "\n";
+		}
+		return result;
 	}
 	
 	
