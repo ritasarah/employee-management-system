@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2015 at 03:04 PM
--- Server version: 5.6.20
--- PHP Version: 5.5.15
+-- Generation Time: Apr 16, 2015 at 03:43 PM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,11 +27,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `data_bulanan` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nip_pegawai` int(11) NOT NULL,
   `bulan` varchar(15) NOT NULL,
   `presensi` int(11) NOT NULL,
-  `absensi` int(11) NOT NULL
+  `absensi` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `nip_pegawai` (`nip_pegawai`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -43,7 +45,9 @@ CREATE TABLE IF NOT EXISTS `data_bulanan` (
 CREATE TABLE IF NOT EXISTS `jadwal_pegawai` (
   `nip_pegawai` int(11) NOT NULL,
   `id_shift` int(11) NOT NULL,
-  `minggu_ke` int(11) NOT NULL
+  `minggu_ke` int(11) NOT NULL,
+  KEY `id_shift` (`id_shift`),
+  KEY `nip_pegawai` (`nip_pegawai`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -53,7 +57,8 @@ CREATE TABLE IF NOT EXISTS `jadwal_pegawai` (
 --
 
 CREATE TABLE IF NOT EXISTS `karyawan` (
-`nip` int(11) NOT NULL
+  `nip` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`nip`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
@@ -94,9 +99,10 @@ INSERT INTO `karyawan` (`nip`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `manager` (
-`nip` int(11) NOT NULL,
+  `nip` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(10) NOT NULL,
-  `password` varchar(20) NOT NULL
+  `password` varchar(20) NOT NULL,
+  PRIMARY KEY (`nip`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -106,11 +112,13 @@ CREATE TABLE IF NOT EXISTS `manager` (
 --
 
 CREATE TABLE IF NOT EXISTS `pegawai` (
-`nip` int(11) NOT NULL,
+  `nip` int(11) NOT NULL AUTO_INCREMENT,
   `no_hp` int(11) NOT NULL,
   `nama` varchar(20) NOT NULL,
   `alamat` varchar(50) NOT NULL,
-  `id_rate_gaji` int(11) NOT NULL
+  `id_rate_gaji` int(11) NOT NULL,
+  PRIMARY KEY (`nip`),
+  KEY `id_rate_gaji` (`id_rate_gaji`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
@@ -151,10 +159,11 @@ INSERT INTO `pegawai` (`nip`, `no_hp`, `nama`, `alamat`, `id_rate_gaji`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `rate_gaji` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` varchar(10) NOT NULL,
   `nominal` int(11) NOT NULL,
-  `pekerjaan` varchar(20) NOT NULL
+  `pekerjaan` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
@@ -181,7 +190,9 @@ INSERT INTO `rate_gaji` (`id`, `status`, `nominal`, `pekerjaan`) VALUES
 
 CREATE TABLE IF NOT EXISTS `shift_available_pegawai` (
   `nip_pegawai` int(11) NOT NULL,
-  `id_shift` int(11) NOT NULL
+  `id_shift` int(11) NOT NULL,
+  KEY `nip_pegawai` (`nip_pegawai`),
+  KEY `id_shift` (`id_shift`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -189,81 +200,131 @@ CREATE TABLE IF NOT EXISTS `shift_available_pegawai` (
 --
 
 INSERT INTO `shift_available_pegawai` (`nip_pegawai`, `id_shift`) VALUES
-(11, 1),
-(11, 2),
-(11, 3),
-(12, 4),
-(12, 5),
-(12, 6),
-(13, 7),
-(13, 8),
-(13, 9),
-(14, 10),
-(14, 11),
-(14, 12),
-(15, 13),
-(15, 14),
-(15, 1),
-(16, 2),
-(16, 3),
-(16, 4),
-(17, 5),
-(17, 6),
-(17, 7),
-(18, 8),
-(18, 9),
-(18, 10),
-(19, 11),
-(19, 12),
-(19, 13),
-(20, 13),
-(20, 14),
-(20, 12),
-(21, 1),
-(21, 2),
-(21, 3),
-(22, 4),
-(22, 5),
-(22, 6),
-(23, 7),
-(23, 8),
-(23, 9),
-(24, 10),
-(24, 11),
-(24, 14),
-(25, 1),
-(25, 2),
-(25, 3),
-(26, 4),
-(26, 5),
-(26, 6),
-(27, 7),
-(27, 8),
-(27, 9),
-(28, 10),
-(28, 11),
-(28, 12),
-(29, 13),
-(29, 14),
-(29, 1),
-(30, 2),
-(30, 3),
-(30, 4),
-(31, 5),
-(31, 6),
-(31, 7),
-(32, 8),
-(32, 9),
-(32, 10),
-(33, 11),
-(33, 12),
+(16, 9),
 (33, 13),
-(34, 14),
-(34, 1),
+(13, 7),
+(28, 4),
+(11, 11),
+(32, 7),
+(11, 5),
+(22, 5),
+(28, 2),
+(11, 7),
+(25, 10),
+(12, 7),
+(14, 13),
+(18, 13),
+(31, 13),
+(27, 12),
+(18, 13),
+(24, 7),
+(22, 1),
+(16, 7),
+(30, 10),
+(35, 7),
 (34, 2),
-(35, 3),
-(35, 4),
-(35, 5);
+(14, 9),
+(33, 8),
+(29, 10),
+(25, 5),
+(32, 6),
+(30, 1),
+(28, 4),
+(24, 5),
+(35, 11),
+(22, 11),
+(20, 9),
+(29, 7),
+(30, 4),
+(30, 8),
+(34, 9),
+(21, 3),
+(35, 13),
+(15, 4),
+(18, 1),
+(22, 10),
+(25, 9),
+(27, 10),
+(22, 3),
+(23, 5),
+(15, 13),
+(34, 13),
+(31, 4),
+(12, 1),
+(11, 13),
+(25, 10),
+(27, 5),
+(21, 11),
+(12, 9),
+(35, 5),
+(24, 7),
+(17, 3),
+(21, 7),
+(11, 10),
+(24, 3),
+(26, 8),
+(22, 5),
+(23, 4),
+(11, 11),
+(35, 1),
+(17, 14),
+(19, 6),
+(20, 2),
+(33, 11),
+(28, 10),
+(34, 9),
+(24, 13),
+(29, 2),
+(14, 2),
+(35, 10),
+(12, 1),
+(24, 4),
+(14, 1),
+(35, 7),
+(18, 7),
+(11, 2),
+(14, 9),
+(11, 5),
+(11, 9),
+(30, 7),
+(15, 10),
+(26, 5),
+(34, 12),
+(22, 5),
+(21, 12),
+(25, 4),
+(33, 11),
+(19, 12),
+(24, 6),
+(19, 12),
+(33, 12),
+(21, 9),
+(31, 5),
+(23, 2),
+(22, 1),
+(25, 7),
+(13, 5),
+(16, 5),
+(15, 10),
+(34, 10),
+(27, 7),
+(19, 8),
+(18, 3),
+(24, 7),
+(17, 1),
+(12, 9),
+(34, 8),
+(11, 8),
+(28, 2),
+(29, 8),
+(17, 6),
+(24, 1),
+(29, 9),
+(17, 12),
+(20, 2),
+(17, 4),
+(33, 5),
+(27, 13);
 
 -- --------------------------------------------------------
 
@@ -272,9 +333,10 @@ INSERT INTO `shift_available_pegawai` (`nip_pegawai`, `id_shift`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `shift_kerja` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `hari` varchar(10) NOT NULL,
-  `jam` varchar(10) NOT NULL
+  `jam` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
@@ -304,12 +366,13 @@ INSERT INTO `shift_kerja` (`id`, `hari`, `jam`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `system_setting` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `min_cuci` int(11) NOT NULL,
   `min_masak` int(11) NOT NULL,
   `min_kasir` int(11) NOT NULL,
   `min_bartender` int(11) NOT NULL,
-  `min_hall` int(11) NOT NULL
+  `min_hall` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
@@ -320,103 +383,6 @@ INSERT INTO `system_setting` (`id`, `min_cuci`, `min_masak`, `min_kasir`, `min_b
 (1, 2, 2, 2, 2, 2);
 
 --
--- Indexes for dumped tables
---
-
---
--- Indexes for table `data_bulanan`
---
-ALTER TABLE `data_bulanan`
- ADD PRIMARY KEY (`id`), ADD KEY `nip_pegawai` (`nip_pegawai`);
-
---
--- Indexes for table `jadwal_pegawai`
---
-ALTER TABLE `jadwal_pegawai`
- ADD KEY `id_shift` (`id_shift`), ADD KEY `nip_pegawai` (`nip_pegawai`);
-
---
--- Indexes for table `karyawan`
---
-ALTER TABLE `karyawan`
- ADD PRIMARY KEY (`nip`);
-
---
--- Indexes for table `manager`
---
-ALTER TABLE `manager`
- ADD PRIMARY KEY (`nip`);
-
---
--- Indexes for table `pegawai`
---
-ALTER TABLE `pegawai`
- ADD PRIMARY KEY (`nip`), ADD KEY `id_rate_gaji` (`id_rate_gaji`);
-
---
--- Indexes for table `rate_gaji`
---
-ALTER TABLE `rate_gaji`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `shift_available_pegawai`
---
-ALTER TABLE `shift_available_pegawai`
- ADD KEY `nip_pegawai` (`nip_pegawai`), ADD KEY `id_shift` (`id_shift`);
-
---
--- Indexes for table `shift_kerja`
---
-ALTER TABLE `shift_kerja`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `system_setting`
---
-ALTER TABLE `system_setting`
- ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `data_bulanan`
---
-ALTER TABLE `data_bulanan`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `karyawan`
---
-ALTER TABLE `karyawan`
-MODIFY `nip` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
---
--- AUTO_INCREMENT for table `manager`
---
-ALTER TABLE `manager`
-MODIFY `nip` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `pegawai`
---
-ALTER TABLE `pegawai`
-MODIFY `nip` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
---
--- AUTO_INCREMENT for table `rate_gaji`
---
-ALTER TABLE `rate_gaji`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
---
--- AUTO_INCREMENT for table `shift_kerja`
---
-ALTER TABLE `shift_kerja`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
---
--- AUTO_INCREMENT for table `system_setting`
---
-ALTER TABLE `system_setting`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
 -- Constraints for dumped tables
 --
 
@@ -424,40 +390,40 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- Constraints for table `data_bulanan`
 --
 ALTER TABLE `data_bulanan`
-ADD CONSTRAINT `data_bulanan_ibfk_1` FOREIGN KEY (`nip_pegawai`) REFERENCES `karyawan` (`nip`);
+  ADD CONSTRAINT `data_bulanan_ibfk_1` FOREIGN KEY (`nip_pegawai`) REFERENCES `karyawan` (`nip`);
 
 --
 -- Constraints for table `jadwal_pegawai`
 --
 ALTER TABLE `jadwal_pegawai`
-ADD CONSTRAINT `jadwal_pegawai_ibfk_1` FOREIGN KEY (`nip_pegawai`) REFERENCES `karyawan` (`nip`),
-ADD CONSTRAINT `jadwal_pegawai_ibfk_2` FOREIGN KEY (`id_shift`) REFERENCES `shift_kerja` (`id`),
-ADD CONSTRAINT `jadwal_pegawai_ibfk_3` FOREIGN KEY (`nip_pegawai`) REFERENCES `karyawan` (`nip`);
+  ADD CONSTRAINT `jadwal_pegawai_ibfk_1` FOREIGN KEY (`nip_pegawai`) REFERENCES `karyawan` (`nip`),
+  ADD CONSTRAINT `jadwal_pegawai_ibfk_2` FOREIGN KEY (`id_shift`) REFERENCES `shift_kerja` (`id`),
+  ADD CONSTRAINT `jadwal_pegawai_ibfk_3` FOREIGN KEY (`nip_pegawai`) REFERENCES `karyawan` (`nip`);
 
 --
 -- Constraints for table `karyawan`
 --
 ALTER TABLE `karyawan`
-ADD CONSTRAINT `karyawan_ibfk_1` FOREIGN KEY (`nip`) REFERENCES `pegawai` (`nip`);
+  ADD CONSTRAINT `karyawan_ibfk_1` FOREIGN KEY (`nip`) REFERENCES `pegawai` (`nip`);
 
 --
 -- Constraints for table `manager`
 --
 ALTER TABLE `manager`
-ADD CONSTRAINT `manager_ibfk_1` FOREIGN KEY (`nip`) REFERENCES `pegawai` (`nip`);
+  ADD CONSTRAINT `manager_ibfk_1` FOREIGN KEY (`nip`) REFERENCES `pegawai` (`nip`);
 
 --
 -- Constraints for table `pegawai`
 --
 ALTER TABLE `pegawai`
-ADD CONSTRAINT `pegawai_ibfk_1` FOREIGN KEY (`id_rate_gaji`) REFERENCES `rate_gaji` (`id`);
+  ADD CONSTRAINT `pegawai_ibfk_1` FOREIGN KEY (`id_rate_gaji`) REFERENCES `rate_gaji` (`id`);
 
 --
 -- Constraints for table `shift_available_pegawai`
 --
 ALTER TABLE `shift_available_pegawai`
-ADD CONSTRAINT `shift_available_pegawai_ibfk_1` FOREIGN KEY (`nip_pegawai`) REFERENCES `karyawan` (`nip`),
-ADD CONSTRAINT `shift_available_pegawai_ibfk_2` FOREIGN KEY (`id_shift`) REFERENCES `shift_kerja` (`id`);
+  ADD CONSTRAINT `shift_available_pegawai_ibfk_1` FOREIGN KEY (`nip_pegawai`) REFERENCES `karyawan` (`nip`),
+  ADD CONSTRAINT `shift_available_pegawai_ibfk_2` FOREIGN KEY (`id_shift`) REFERENCES `shift_kerja` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
