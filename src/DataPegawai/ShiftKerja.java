@@ -77,8 +77,7 @@ public class ShiftKerja {
 			Class.forName(driver).newInstance();
 			Connection conn = DriverManager.getConnection(url,userName,password);
 			Statement st = conn.createStatement();
-			ResultSet res = st.executeQuery("Select nip_pegawai from posts where id_shift = " + id);
-			Karyawan temp = new Karyawan();
+			ResultSet res = st.executeQuery("Select nip_pegawai from shift_available_pegawai where id_shift = " + id);
 			
 			while(res.next()){
 				listKaryawanAvailable.add(res.getInt("nip_pegawai"));
@@ -86,6 +85,18 @@ public class ShiftKerja {
 			conn.close();
 		}catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
 		}
+	}
+	
+	public void assignShiftKaryawan(){
+		
+	}
+	
+	public String printListKaryawanAvail(){
+		String result = "";
+		for(Integer nip: listKaryawanAvailable){
+			result += nip + "\n";
+		}
+		return result;
 	}
 	
 	

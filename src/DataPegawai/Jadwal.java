@@ -40,9 +40,13 @@ public class Jadwal {
 			Statement st = conn.createStatement();
 			ResultSet res = st.executeQuery("Select * from shift_kerja");
 			
+			ShiftKerja sk = null;
 			while(res.next()){
-				jadwalKerja.add(new ShiftKerja(res.getInt("id"), res.getString("jam"), res.getString("hari")));
+				sk = new ShiftKerja(res.getInt("id"), res.getString("jam"), res.getString("hari"));
+				sk.getListKaryawanAvailFromDB();
+				jadwalKerja.add(sk);
 			}
+			
 			conn.close();
 		}catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
 		}
