@@ -1,6 +1,7 @@
 package GUI;
 
 import DataPegawai.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -197,13 +198,12 @@ public class FormView extends javax.swing.JFrame {
             tempdatakar[i][1]=datakar.getKaryawanByID(i).getNama();
         }
         tableDataPegawai.setModel(new javax.swing.table.DefaultTableModel(
-            tempdatakar,
-            //new Object [][] {
-                //  {datakar.getKaryawanByID(1).getNama(), null, null, null, null, null, null},
-                // {null, null, null, null, null, null, null},
-                // {null, null, null, null, null, null, null}
+            new Object [][] {tempdatakar,
+                {datakar.getKaryawanByID(1).getNama(), null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
 
-                //  },
+            },
             new String [] {
                 "Nama", "Alamat", "No HP", "Status", "Hari", "Absensi", "Presensi"
             }
@@ -215,7 +215,7 @@ public class FormView extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tableDataPegawai);
 
-        jButton3.setText("jButton3");
+        jButton3.setText("Edit Field");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -231,7 +231,7 @@ public class FormView extends javax.swing.JFrame {
                 .addComponent(jLabel16)
                 .addGap(91, 91, 91)
                 .addComponent(jButton3)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
             .addGroup(viewDataPegawaiLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -1010,6 +1010,9 @@ public class FormView extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        String name=JOptionPane.showInputDialog("Enter Info");
+        tableDataPegawai.getModel().setValueAt(name,tableDataPegawai.getSelectedRow(),tableDataPegawai.getSelectedColumn());
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
