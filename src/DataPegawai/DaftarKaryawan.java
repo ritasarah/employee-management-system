@@ -42,10 +42,11 @@ public class DaftarKaryawan {
 	    res = st.executeQuery("SELECT * FROM `pegawai`");
 	    while(res.next()){
 		//konstruktur kar String inNama, String inNIP, String inHP, String inAlamat
-		System.out.println("in while next");
 		listKaryawan.add(new Karyawan (res.getString("nama"), res.getString("nip"), res.getString("no_hp"), res.getString("alamat")));
 		
 	    }
+	    
+	    checkList();
 	}
 	catch (SQLException ex){
 	    
@@ -56,10 +57,17 @@ public class DaftarKaryawan {
 	catch (Exception ex){
 	    System.out.println(ex.toString());
 	}
-	
-	
+
 	
     }
+    
+    public void checkList(){
+	for (int i = 0; i < listKaryawan.size(); i++){
+	    System.out.println(listKaryawan.get(i).toString());
+	}
+	
+    }
+    
     public Karyawan getKaryawanByID(int ID){
 	//TODO
 	return new Karyawan ("dummy", "dummy", "dummy", "dummy", new ShiftKerja());

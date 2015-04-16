@@ -25,5 +25,9 @@ public class Karyawan {
 	no_hp = inHP;
 	alamat = inAlamat;
     }
-    
+    @Override
+    public String toString(){
+	String karString = "Nama : " + nama + "\nNIP : " + nip + "\nHP : " + no_hp + "\nAlamat : " + alamat + "\n";
+	return karString;
+    }
 }
