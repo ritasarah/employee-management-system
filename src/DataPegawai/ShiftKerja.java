@@ -18,6 +18,8 @@ public class ShiftKerja {
     private String jam, hari;
 	private List<Integer> listOfKaryawan;
 	private List<Integer> listKaryawanAvailable;
+	private List<Integer> karyawanCuci, karyawanMasak, karyawanHall, karyawanBartender, karyawanKasir;
+	
 	
 	public ShiftKerja(){
 		listOfKaryawan = new ArrayList<>();
@@ -32,6 +34,15 @@ public class ShiftKerja {
 		hari = h;
 	}
 
+	public List<Integer> getListKaryawanAvailable() {
+		return listKaryawanAvailable;
+	}
+
+	public void setListKaryawanAvailable(List<Integer> listKaryawanAvailable) {
+		this.listKaryawanAvailable = listKaryawanAvailable;
+	}
+	
+	
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -84,6 +95,26 @@ public class ShiftKerja {
 			}
 			conn.close();
 		}catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+		}
+	}
+	
+	// cari irisan dari list karyawan berdasarkan pekerjaan sebagai input (listParent)
+	// dengan list karyawan yang available pada shift kerja ini
+	public void getIntersectionKaryawan(List<Integer> listParent, String pekerjaan){
+		for (Integer karyawan : listParent) {
+			if(listKaryawanAvailable.contains(karyawan)) {
+				if(pekerjaan.equals("cuci")){
+					karyawanCuci.add(karyawan);
+				} else if(pekerjaan.equals("masak")){
+					karyawanMasak.add(karyawan);
+				} else if(pekerjaan.equals("hall")){
+					karyawanHall.add(karyawan);
+				} else if(pekerjaan.equals("bartender")){
+					karyawanBartender.add(karyawan);
+				} else { // kasir
+					karyawanKasir.add(karyawan);
+				}
+			}
 		}
 	}
 	
