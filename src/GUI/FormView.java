@@ -36,6 +36,7 @@ public class FormView extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tableDataPegawai = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -195,17 +196,16 @@ public class FormView extends javax.swing.JFrame {
         DaftarKaryawan datakar = new DaftarKaryawan();
         Object[][] tempdatakar = new Object [datakar.listKaryawan.size()][7];
         for(int i = 0 ; i<datakar.listKaryawan.size();i++){
+            tempdatakar[i][0]= i+11;
             tempdatakar[i][1]=datakar.getKaryawanByID(i+11).getNama();
+            tempdatakar[i][2]=datakar.getKaryawanByID(i+11).getAlamat();
+            tempdatakar[i][3]=datakar.getKaryawanByID(i+11).getNo_hp();
+            tempdatakar[i][4]=datakar.getKaryawanByID(i+11).getId_rate_gaji();
         }
         tableDataPegawai.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {tempdatakar,
-                {datakar.getKaryawanByID(11).getNama(), null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-
-            },
+            tempdatakar,
             new String [] {
-                "Nama", "Alamat", "No HP", "Status", "Hari", "Absensi", "Presensi"
+                "NIP","Nama", "Alamat", "No HP", "ID Gaji", "Hari"
             }
         )  );
         tableDataPegawai.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -222,6 +222,13 @@ public class FormView extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("Delete");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout viewDataPegawaiLayout = new javax.swing.GroupLayout(viewDataPegawai);
         viewDataPegawai.setLayout(viewDataPegawaiLayout);
         viewDataPegawaiLayout.setHorizontalGroup(
@@ -229,9 +236,11 @@ public class FormView extends javax.swing.JFrame {
             .addGroup(viewDataPegawaiLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel16)
-                .addGap(91, 91, 91)
+                .addGap(52, 52, 52)
                 .addComponent(jButton3)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(21, 21, 21))
             .addGroup(viewDataPegawaiLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -243,7 +252,8 @@ public class FormView extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(viewDataPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(119, Short.MAX_VALUE))
@@ -1009,11 +1019,27 @@ public class FormView extends javax.swing.JFrame {
     }//GEN-LAST:event_tableDataPegawaiMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        DaftarKaryawan kar = new DaftarKaryawan();
         String name=JOptionPane.showInputDialog("Enter Info");
         tableDataPegawai.getModel().setValueAt(name,tableDataPegawai.getSelectedRow(),tableDataPegawai.getSelectedColumn());
-        
+        System.out.println(tableDataPegawai.getSelectedRow()+" "+tableDataPegawai.getSelectedColumn());
+        String nama, alamat, noHp;
+        int nip, idGaji;
+            nip = (int)tableDataPegawai.getValueAt(tableDataPegawai.getSelectedRow(), 0);
+            nama = tableDataPegawai.getValueAt(tableDataPegawai.getSelectedRow(), 1).toString();
+            alamat = tableDataPegawai.getValueAt(tableDataPegawai.getSelectedRow(), 2).toString();
+            noHp = tableDataPegawai.getValueAt(tableDataPegawai.getSelectedRow(), 3).toString();
+            idGaji = (int)tableDataPegawai.getValueAt(tableDataPegawai.getSelectedRow(), 4);
+            System.out.println(nip+"   "+nama);
+       kar.editKaryawanByID(new Karyawan(nama,nip,noHp,alamat,idGaji,null));
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+         DaftarKaryawan kar = new DaftarKaryawan();
+        int nip;
+            nip = (int)tableDataPegawai.getValueAt(tableDataPegawai.getSelectedRow(), 0);
+        kar.deleteKaryawanByID(nip);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1056,6 +1082,7 @@ public class FormView extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
