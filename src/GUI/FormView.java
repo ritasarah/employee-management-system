@@ -195,11 +195,11 @@ public class FormView extends javax.swing.JFrame {
         DaftarKaryawan datakar = new DaftarKaryawan();
         Object[][] tempdatakar = new Object [datakar.listKaryawan.size()][7];
         for(int i = 0 ; i<datakar.listKaryawan.size();i++){
-            tempdatakar[i][1]=datakar.getKaryawanByID(i).getNama();
+            tempdatakar[i][1]=datakar.getKaryawanByID(i+11).getNama();
         }
         tableDataPegawai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {tempdatakar,
-                {datakar.getKaryawanByID(1).getNama(), null, null, null, null, null, null},
+                {datakar.getKaryawanByID(11).getNama(), null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null}
 
