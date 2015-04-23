@@ -118,8 +118,8 @@ public class ShiftKerja {
 		}
 	}
 	
-	public void assignShiftKaryawan(){
-		
+	public void assignShiftKaryawan(int jumlahCuci, int jumlahMasak, int jumlahHall, int jumlahKasir, int jumlahBartender){
+		int totalKaryawanShift = jumlahCuci+jumlahMasak+jumlahHall+jumlahKasir+jumlahBartender;
 	}
 	
 	public String printListKaryawanAvail(){
