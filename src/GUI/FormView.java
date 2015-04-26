@@ -2,19 +2,30 @@
 package GUI;
 
 import DataPegawai.*;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
  * @author Rita
  */
 public class FormView extends javax.swing.JFrame {
-
+	Jadwal jadwal;
+	DaftarKaryawan kar;
+	
     /**
      * Creates new form FormView
      */
     public FormView() {
-        initComponents();
+        jadwal = new Jadwal();
+		kar = new DaftarKaryawan();
+		initComponents();
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+		this.setTitle("Employee Management");
+		
     }
 
     /**
@@ -1007,9 +1018,36 @@ public class FormView extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void generateJadwalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateJadwalActionPerformed
-        // TODO add your handling code here:
+		jadwal.generateJadwal();
+		tableJadwalPagi.setModel(createJadwalTable(0).getModel());
+		tableJadwalMalam.setModel(createJadwalTable(1).getModel());
     }//GEN-LAST:event_generateJadwalActionPerformed
 
+	/**
+	 * Membuat tabel jadwal berdasarkan jadwal yang sudah dibuat
+	 * @param inputJam 0 untuk pagi, 1 untuk malam
+	 * @return tabel jadwal bertipe JTable
+	 */
+	private JTable createJadwalTable(int inputJam){
+		System.out.println("-Create Jadwal Table "+inputJam+"-");
+		System.out.println("total butuh karyawan="+jadwal.getTotalKaryawanButuh());
+		Object[][] data = new Object[jadwal.getTotalKaryawanButuh()][7];
+		int i;
+		int j=0;
+		for(int sk=inputJam;sk<14;sk=sk+2){
+			for(i=0;i<jadwal.getJadwalKerja().get(sk).getListOfKaryawan().size();i++){
+				System.out.println(i+" "+j);
+				data[i][j] = kar.getKaryawanByID(jadwal.getJadwalKerja().get(sk).getListOfKaryawan().get(i)).getNama();
+			}
+			j++;
+		}
+		
+        String[] columnNames = {
+            "Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"
+            };
+        return new JTable(data, columnNames);
+	}
+	
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
@@ -1020,8 +1058,7 @@ public class FormView extends javax.swing.JFrame {
     }//GEN-LAST:event_tableDataPegawaiMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        DaftarKaryawan kar = new DaftarKaryawan();
-        String name=JOptionPane.showInputDialog("Enter Info");
+         String name=JOptionPane.showInputDialog("Enter Info");
         tableDataPegawai.getModel().setValueAt(name,tableDataPegawai.getSelectedRow(),tableDataPegawai.getSelectedColumn());
         System.out.println(tableDataPegawai.getSelectedRow()+" "+tableDataPegawai.getSelectedColumn());
         String nama, alamat, noHp;
@@ -1036,7 +1073,6 @@ public class FormView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-         DaftarKaryawan kar = new DaftarKaryawan();
         int nip;
             nip = (int)tableDataPegawai.getValueAt(tableDataPegawai.getSelectedRow(), 0);
         kar.deleteKaryawanByID(nip);

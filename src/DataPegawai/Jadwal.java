@@ -13,9 +13,9 @@ import java.util.List;
  * @author Cilvia
  */
 public class Jadwal {
-    private List<ShiftKerja> jadwalKerja;
-	private int minCuci, minMasak, minHall, minBartender, minKasir;
-	private List<Integer> karyawanMasak, karyawanCuci, karyawanHall, karyawanBartender, karyawanKasir;
+    private List<ShiftKerja> jadwalKerja; // jadwal kerja karyawan
+	private int minCuci, minMasak, minHall, minBartender, minKasir; // jumlah karyawan yang dibutuhkan
+	private List<Integer> karyawanMasak, karyawanCuci, karyawanHall, karyawanBartender, karyawanKasir; // list karyawan berdasarkan pekerjaan
 	
 	public Jadwal(){
 		jadwalKerja = new ArrayList<>();
@@ -30,7 +30,22 @@ public class Jadwal {
 		return jadwalKerja;
 	}
 	
-	// dilakukan pertama kali
+	public int getTotalKaryawanButuh(){
+		return minCuci+minMasak+minHall+minKasir+minBartender;
+	}
+	
+	// Melakukan reset pada atribut-atribut jadwal
+	private void resetJadwal(){
+		jadwalKerja.clear();
+		karyawanMasak.clear();
+		karyawanCuci.clear();
+		karyawanHall.clear();
+		karyawanBartender.clear();
+		karyawanKasir.clear();
+	}
+	
+	// # dilakukan pertama kali #
+	// Mengambil data jumlah karyawan yang dibutuhkan pada tiap pekerjaan dari database
 	public void initJumlahKaryawanButuh(){
 		String url = "jdbc:mysql://localhost:3306/employee_management";
 		String driver = "com.mysql.jdbc.Driver";
@@ -54,7 +69,8 @@ public class Jadwal {
 		}
 	}
 	
-	// dilakukan setelah initJumlahKaryawanButuh()
+	// # dilakukan setelah initJumlahKaryawanButuh() #
+	// Mengambil data karyawan pada database dan membaginya berdasarkan pekerjaannya
 	public void initPekerjaanKaryawan(){
 		String url = "jdbc:mysql://localhost:3306/employee_management";
 		String driver = "com.mysql.jdbc.Driver";
@@ -84,7 +100,9 @@ public class Jadwal {
 		}
 	}
 	
-	// dilakukan setelah initPekerjaanKaryawan
+	// # dilakukan setelah initPekerjaanKaryawan #
+	// Mengambil data shift kerja pada database dan 
+	// menyusun list karyawan yang dapat bekerja pada shift kerja tsb berdasarkan pekerjaan
 	public void initListKaryawan(){
 		String url = "jdbc:mysql://localhost:3306/employee_management";
 		String driver = "com.mysql.jdbc.Driver";
@@ -113,25 +131,15 @@ public class Jadwal {
 		}
 	}
 	
+	// Melakukan penyusunan jadwal
 	public void generateJadwal(){
-		int totalKaryawanShift = minCuci+minMasak+minHall+minKasir+minBartender;
-		int i;
+		resetJadwal();
+		initJumlahKaryawanButuh();
+		initPekerjaanKaryawan();
+		initListKaryawan();
 		
 		for(ShiftKerja sk: jadwalKerja){
-			while(sk.getListOfKaryawan().size() < totalKaryawanShift){
-				
-				i = 0;
-				for (Integer karyawan : karyawanCuci) {
-					if(sk.getListKaryawanAvailable().contains(karyawan)) {
-						sk.putKaryawan(karyawan);
-						i++;
-					}
-				}
-				
-				
-				
-		
-			}
+			sk.assignShiftKaryawan(minCuci, minMasak, minHall, minKasir, minBartender);
 		}
 	}
 }
