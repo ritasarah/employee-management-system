@@ -34,11 +34,13 @@ public class FormView extends javax.swing.JFrame {
         jadwal = new Jadwal();
 		kar = new DaftarKaryawan();
 		setting = new Setting();
-		dataBulan = new Bulan();
+		dataBulan = new Bulan(5);
 		initComponents();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 		this.setTitle("Employee Management");
+		tableGaji.setModel(createGajiTable().getModel());
+		showSettingView();
 		
     }
 
@@ -1195,15 +1197,15 @@ public class FormView extends javax.swing.JFrame {
     }//GEN-LAST:event_printToPdfActionPerformed
 
 	private JTable createGajiTable(){
-		Object[][] data = new Object[jadwal.getTotalKaryawanButuh()][5];
+		Object[][] data = new Object[dataBulan.getListPegawai().size()][5];
 		int i;
 		int j=0;
-		for(int sk=0;sk<14;sk=sk+2){
-			for(i=0;i<jadwal.getJadwalKerja().get(sk).getListOfKaryawan().size();i++){
-				System.out.println(i+" "+j);
-				data[i][j] = kar.getKaryawanByID(jadwal.getJadwalKerja().get(sk).getListOfKaryawan().get(i)).getNama();
-			}
-			j++;
+		for(i=0;i<dataBulan.getListPegawai().size();i++){
+			data[i][0] = dataBulan.getListPegawai().get(i).getNama();
+//			data[i][1] = dataBulan.getListPegawai().get(i).getAbsensi();
+//			data[i][2] = dataBulan.getListPegawai().get(i).getPresensi();
+			data[i][3] = dataBulan.getListPegawai().get(i).getId_rate_gaji();
+			data[i][4] = dataBulan.getListPegawai().get(i).getGajibulanan();
 		}
 		
         String[] columnNames = {
@@ -1249,6 +1251,7 @@ public class FormView extends javax.swing.JFrame {
 		rateGajiInput.add(Integer.valueOf(nontraineeHall.getText()));
 		rateGajiInput.add(Integer.valueOf(nontraineeKasir.getText()));
 		setting.setRateGajiInDB(rateGajiInput);
+		showSettingView();
     }//GEN-LAST:event_buttonSettingActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
