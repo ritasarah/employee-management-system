@@ -18,4 +18,10 @@ public class DataBulanan {
     
     public void setListBulan(List<Bulan> listk){
         listBulan = listk;}
+    
+    public void updateAllGajiBulan(){
+	for (Bulan Moon: listBulan){
+	    Moon.countGajiBulanan();
+	}
+    }
 }

@@ -59,6 +59,7 @@ public class DaftarKaryawan {
 	
 	return true;
     }
+    
     public void getListKaryawan(){
 	String url = "jdbc:mysql://localhost:3306/employee_management";
 	String driver = "com.mysql.jdbc.Driver";
@@ -163,6 +164,7 @@ public class DaftarKaryawan {
 	try{
 	    Class.forName(driver).newInstance();
 	    Connection conn = DriverManager.getConnection(url,userName,password);
+	    
 	    String theQuery = "INSERT INTO `pegawai` (`no_hp`, `nama`, `alamat`, `id_rate_gaji`) VALUES (\'" +
 							newGuy.getNo_hp() + "\', \'" + newGuy.getNama() + "\', \'" + newGuy.getAlamat() + 
 							"\', \'" + newGuy.getId_rate_gaji() + "\')";

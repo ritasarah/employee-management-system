@@ -1,5 +1,7 @@
 package DataPegawai;
 
+import java.util.List;
+
 /**
  *
  * @author Felicia
@@ -11,20 +13,28 @@ public class Karyawan {
     private String alamat;
     private int id_rate_gaji;
     
-    private ShiftKerja hariAvailable;
+    private List<ShiftKerja> hariAvailable;
     
-    public Karyawan(String inNama, int inNIP, String inHP, String inAlamat, int inRate, ShiftKerja inHari){
+
+    public int getGajibulanan() {
+	return gajibulanan;
+    }
+
+    public void setGajibulanan(int gajibulanan) {
+	this.gajibulanan = gajibulanan;
+    }
+    
+    private int gajibulanan;
+    
+    public Karyawan(String inNama, int inNIP, String inHP, String inAlamat, int inRate, List<ShiftKerja> inHari){
 	nama = inNama;
 	nip = inNIP;
 	no_hp = inHP;
 	alamat = inAlamat;
 	id_rate_gaji = inRate;
 	hariAvailable = inHari;
+	gajibulanan = 0;
     }
-
-    public String getNama() {
-        return nama;
-    }       
     
     public Karyawan(String inNama, int inNIP, String inHP, String inAlamat, int inRate){
 	nama = inNama;
@@ -32,8 +42,12 @@ public class Karyawan {
 	no_hp = inHP;
 	alamat = inAlamat;
 	id_rate_gaji = inRate;
+	gajibulanan = 0;
     }
 
+    public String getNama() {
+        return nama;
+    }       
 
     public void setNama(String nama) {
 	this.nama = nama;
@@ -72,17 +86,17 @@ public class Karyawan {
 	this.id_rate_gaji = id_rate_gaji;
     }
 
-    public ShiftKerja getHariAvailable() {
+    public List<ShiftKerja> getHariAvailable() {
 	return hariAvailable;
     }
 
-    public void setHariAvailable(ShiftKerja hariAvailable) {
+    public void setHariAvailable(List<ShiftKerja> hariAvailable) {
 	this.hariAvailable = hariAvailable;
     }
 
     public String toString(){
 	String karString = "Nama : " + nama + "\nNIP : " + nip + "\nHP : " + no_hp + 
-		"\nAlamat : " + alamat + "\nID Pekerjaan : " + id_rate_gaji + "\n";
+		"\nAlamat : " + alamat + "\nID Pekerjaan : " + id_rate_gaji + "\nGaji : " + gajibulanan + "\n";
 	return karString;
     }
 }
