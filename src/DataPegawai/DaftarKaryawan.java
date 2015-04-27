@@ -59,7 +59,10 @@ public class DaftarKaryawan {
 	
 	return true;
     }
+    
     public void getListKaryawan(){
+        System.out.println("Get List Karyawan");
+        listKaryawan.clear();
 	String url = "jdbc:mysql://localhost:3306/employee_management";
 	String driver = "com.mysql.jdbc.Driver";
 	String userName = "root"; 
@@ -75,7 +78,8 @@ public class DaftarKaryawan {
 	    while(res.next()){
 		//konstruktur kar String inNama, String inNIP, String inHP, String inAlamat
 		listKaryawan.add(new Karyawan (res.getString("nama"), res.getInt("nip"), res.getString("no_hp"), res.getString("alamat"), res.getInt("id_rate_gaji")));
-	    }
+                System.out.println(listKaryawan.get(listKaryawan.size()-1).getNama());
+            }
 	    conn.close();
 	}
 	catch (SQLException ex){
@@ -163,6 +167,7 @@ public class DaftarKaryawan {
 	try{
 	    Class.forName(driver).newInstance();
 	    Connection conn = DriverManager.getConnection(url,userName,password);
+	    
 	    String theQuery = "INSERT INTO `pegawai` (`no_hp`, `nama`, `alamat`, `id_rate_gaji`) VALUES (\'" +
 							newGuy.getNo_hp() + "\', \'" + newGuy.getNama() + "\', \'" + newGuy.getAlamat() + 
 							"\', \'" + newGuy.getId_rate_gaji() + "\')";
