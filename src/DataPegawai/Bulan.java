@@ -103,6 +103,7 @@ public class Bulan {
 	    
 	    while (res.next()){ //String inNama, int inNIP, String inHP, String inAlamat, int inRate
 		Karyawan temp = new Karyawan(res.getString("nama"), res.getInt("nip"), res.getString("no_hp"), res.getString("alamat"), res.getInt("id_rate_gaji"));
+		
 		listPegawai.add(temp);
 		System.out.println(temp.toString());
 		
@@ -121,6 +122,7 @@ public class Bulan {
 	
 	HashMap<Integer, Integer> tabelGaji = new HashMap<Integer, Integer>();
 	HashMap<Integer, Integer> tabelPresensi = new HashMap<Integer, Integer>();
+	HashMap<Integer, Integer> tabelAbsensi = new HashMap<Integer, Integer>();
 	
 	ResultSet res = null;
 	Statement st = null;
@@ -133,13 +135,15 @@ public class Bulan {
 	    while (res.next()){
 		tabelGaji.put(res.getInt("nip"), res.getInt("nominal"));
 		tabelPresensi.put(res.getInt("nip"), res.getInt("presensi"));
+		tabelAbsensi.put(res.getInt("nip"), res.getInt("absensi"));
 		System.out.printf("1");
 	    }
 	    System.out.println("\nUpdate Gaji:");
 	    for (Karyawan K: listPegawai){
 		K.setGajibulanan(tabelGaji.get(K.getNip()) * tabelPresensi.get(K.getNip()));
+		K.setPresensi(tabelPresensi.get(K.getNip()));
+		K.setAbsensi(tabelAbsensi.get(K.getNip()));
 		System.out.println(K.toString());
-		
 	    }
 	    
 	    conn.close();

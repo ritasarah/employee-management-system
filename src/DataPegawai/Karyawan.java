@@ -13,6 +13,9 @@ public class Karyawan {
     private String alamat;
     private int id_rate_gaji;
     
+    private int absensi;
+    private int presensi;
+    
     private List<ShiftKerja> hariAvailable;
     
 
@@ -34,6 +37,22 @@ public class Karyawan {
 	id_rate_gaji = inRate;
 	hariAvailable = inHari;
 	gajibulanan = 0;
+    }
+
+    public int getAbsensi() {
+	return absensi;
+    }
+
+    public void setAbsensi(int absensi) {
+	this.absensi = absensi;
+    }
+
+    public int getPresensi() {
+	return presensi;
+    }
+
+    public void setPresensi(int presensi) {
+	this.presensi = presensi;
     }
     
     public Karyawan(String inNama, int inNIP, String inHP, String inAlamat, int inRate){
