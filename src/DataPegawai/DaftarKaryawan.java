@@ -61,6 +61,7 @@ public class DaftarKaryawan {
     }
     
     public void getListKaryawan(){
+	listKaryawan.clear();
 	String url = "jdbc:mysql://localhost:3306/employee_management";
 	String driver = "com.mysql.jdbc.Driver";
 	String userName = "root"; 
@@ -170,6 +171,10 @@ public class DaftarKaryawan {
 							"\', \'" + newGuy.getId_rate_gaji() + "\')";
 	    st = conn.prepareStatement(theQuery, Statement.RETURN_GENERATED_KEYS);
 	    st.executeUpdate();
+	    for (ShiftKerja SK: newGuy.getHariAvailable()){
+		theQuery = "INSERT INTO `shift_available_pegawai` (`nip_pegawai`, `id_shift`) VALUES (" + newGuy.getNip() + ", " + SK.getId() + ")";
+		st.executeUpdate(theQuery);
+	    }
 	    int auto_id = -99;
 	    //if(returnLastInsertId) {
 		ResultSet rs = st.getGeneratedKeys();
@@ -191,7 +196,7 @@ public class DaftarKaryawan {
 	catch (Exception ex){
 	    System.out.println(ex.toString());
 	}
-	    getListKaryawan();
+	getListKaryawan();
     }
 
 }
