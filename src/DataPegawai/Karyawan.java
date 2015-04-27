@@ -1,5 +1,7 @@
 package DataPegawai;
 
+import java.util.List;
+
 /**
  *
  * @author Felicia
@@ -11,7 +13,7 @@ public class Karyawan {
     private String alamat;
     private int id_rate_gaji;
     
-    private ShiftKerja hariAvailable;
+    private List<ShiftKerja> hariAvailable;
     
 
     public int getGajibulanan() {
@@ -24,7 +26,7 @@ public class Karyawan {
     
     private int gajibulanan;
     
-    public Karyawan(String inNama, int inNIP, String inHP, String inAlamat, int inRate, ShiftKerja inHari){
+    public Karyawan(String inNama, int inNIP, String inHP, String inAlamat, int inRate, List<ShiftKerja> inHari){
 	nama = inNama;
 	nip = inNIP;
 	no_hp = inHP;
@@ -84,11 +86,11 @@ public class Karyawan {
 	this.id_rate_gaji = id_rate_gaji;
     }
 
-    public ShiftKerja getHariAvailable() {
+    public List<ShiftKerja> getHariAvailable() {
 	return hariAvailable;
     }
 
-    public void setHariAvailable(ShiftKerja hariAvailable) {
+    public void setHariAvailable(List<ShiftKerja> hariAvailable) {
 	this.hariAvailable = hariAvailable;
     }
 
