@@ -59,6 +59,7 @@ public class DaftarKaryawan {
 	
 	return true;
     }
+    
     public void getListKaryawan(){
 	String url = "jdbc:mysql://localhost:3306/employee_management";
 	String driver = "com.mysql.jdbc.Driver";

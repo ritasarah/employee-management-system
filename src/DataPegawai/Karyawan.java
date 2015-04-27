@@ -13,8 +13,16 @@ public class Karyawan {
     
     private ShiftKerja hariAvailable;
     
-    private int absensi;
-    private int presensi;
+
+    public int getGajibulanan() {
+	return gajibulanan;
+    }
+
+    public void setGajibulanan(int gajibulanan) {
+	this.gajibulanan = gajibulanan;
+    }
+    
+    private int gajibulanan;
     
     public Karyawan(String inNama, int inNIP, String inHP, String inAlamat, int inRate, ShiftKerja inHari){
 	nama = inNama;
@@ -23,29 +31,8 @@ public class Karyawan {
 	alamat = inAlamat;
 	id_rate_gaji = inRate;
 	hariAvailable = inHari;
-	absensi = 0;
-	presensi = 0;
+	gajibulanan = 0;
     }
-
-    public int getAbsensi() {
-	return absensi;
-    }
-
-    public void setAbsensi(int absensi) {
-	this.absensi = absensi;
-    }
-
-    public int getPresensi() {
-	return presensi;
-    }
-
-    public void setPresensi(int presensi) {
-	this.presensi = presensi;
-    }
-
-    public String getNama() {
-        return nama;
-    }       
     
     public Karyawan(String inNama, int inNIP, String inHP, String inAlamat, int inRate){
 	nama = inNama;
@@ -53,8 +40,12 @@ public class Karyawan {
 	no_hp = inHP;
 	alamat = inAlamat;
 	id_rate_gaji = inRate;
+	gajibulanan = 0;
     }
 
+    public String getNama() {
+        return nama;
+    }       
 
     public void setNama(String nama) {
 	this.nama = nama;
@@ -103,7 +94,7 @@ public class Karyawan {
 
     public String toString(){
 	String karString = "Nama : " + nama + "\nNIP : " + nip + "\nHP : " + no_hp + 
-		"\nAlamat : " + alamat + "\nID Pekerjaan : " + id_rate_gaji + "\n";
+		"\nAlamat : " + alamat + "\nID Pekerjaan : " + id_rate_gaji + "\nGaji : " + gajibulanan + "\n";
 	return karString;
     }
 }
