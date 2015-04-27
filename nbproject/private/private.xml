@@ -3,10 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Tgs/Sem6/Si/employee-management-system/src/DataPegawai/DaftarKaryawan.java</file>
             <file>file:/D:/Tgs/Sem6/Si/employee-management-system/src/DataPegawai/ShiftKerja.java</file>
             <file>file:/D:/Tgs/Sem6/Si/employee-management-system/src/DataPegawai/Karyawan.java</file>
             <file>file:/D:/Tgs/Sem6/Si/employee-management-system/src/GUI/FormView.java</file>
+=======
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/SI/employee-management-system/src/DataPegawai/Bulan.java</file>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/SI/employee-management-system/src/DataPegawai/DataBulanan.java</file>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/SI/employee-management-system/src/GUI/SI.java</file>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/SI/employee-management-system/src/DataPegawai/DaftarKaryawan.java</file>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/SI/employee-management-system/src/DataPegawai/Setting.java</file>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/SI/employee-management-system/src/DataPegawai/ShiftKerja.java</file>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/SI/employee-management-system/src/DataPegawai/Jadwal.java</file>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/SI/employee-management-system/src/DataPegawai/Karyawan.java</file>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/SI/employee-management-system/src/GUI/LoginForm.java</file>
+            <file>file:/C:/Users/Anggi/Documents/kuliah/Semester6/SI/employee-management-system/src/GUI/FormView.java</file>
+>>>>>>> a31a30b7b2374bf415ce64a95a34522ccb10d0b9
         </group>
     </open-files>
 </project-private>

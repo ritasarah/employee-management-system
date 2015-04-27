@@ -16,13 +16,11 @@ public class testDP {
     public static void main (String[] args){
 	ShiftKerja shift = new ShiftKerja();
 	DaftarKaryawan DK = new DaftarKaryawan();
-	
-	Bulan Moon = new Bulan();
+	Bulan Moon = new Bulan(5);
 	Moon.countGajiBulanan();
 	
-	List<Karyawan> A = Moon.getListPegawai();
-	for (int i = 0; i < A.size(); i++){
-	    A.get(i).toString();
+	for (int i = 0; i < Moon.getListPegawai().size(); i++){
+	    Moon.getListPegawai().get(i).toString();
 	}
     }
 }

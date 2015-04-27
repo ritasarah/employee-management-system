@@ -24,6 +24,8 @@ import javax.swing.JTable;
 public class FormView extends javax.swing.JFrame {
 	Jadwal jadwal;
 	DaftarKaryawan kar;
+	Setting setting;
+	Bulan dataBulan;
 	
     /**
      * Creates new form FormView
@@ -31,12 +33,17 @@ public class FormView extends javax.swing.JFrame {
     public FormView() {
         jadwal = new Jadwal();
 		kar = new DaftarKaryawan();
+		setting = new Setting();
+		dataBulan = new Bulan(4);
 		initComponents();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 		this.setTitle("Employee Management");
                 tableDataPegawai.setModel(showDataPegawai().getModel());
 	
+		tableGaji.setModel(createGajiTable().getModel());
+		showSettingView();
+		
     }
 
     /**
@@ -80,7 +87,7 @@ public class FormView extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        jumlahPegawai = new javax.swing.JTextField();
+        jumlahKasir = new javax.swing.JTextField();
         jumlahCuci = new javax.swing.JTextField();
         jumlahMasak = new javax.swing.JTextField();
         jumlahBartender = new javax.swing.JTextField();
@@ -426,6 +433,11 @@ public class FormView extends javax.swing.JFrame {
         jLabel33.setText("pegawai");
 
         buttonSetting.setText("OK");
+        buttonSetting.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSettingActionPerformed(evt);
+            }
+        });
 
         jLabel37.setText("Kasir");
 
@@ -524,7 +536,7 @@ public class FormView extends javax.swing.JFrame {
                                             .addComponent(jLabel25))
                                         .addGap(55, 55, 55)
                                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jumlahPegawai, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                                            .addComponent(jumlahKasir, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                                             .addComponent(jumlahCuci)
                                             .addComponent(jumlahMasak)
                                             .addComponent(jumlahBartender)
@@ -585,7 +597,7 @@ public class FormView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(jumlahPegawai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jumlahKasir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel33))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1214,6 +1226,64 @@ public class FormView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_printToPdfActionPerformed
 
+	private JTable createGajiTable(){
+		Object[][] data = new Object[dataBulan.getListPegawai().size()][5];
+		int i;
+		int j=0;
+		for(i=0;i<dataBulan.getListPegawai().size();i++){
+			data[i][0] = dataBulan.getListPegawai().get(i).getNama();
+			data[i][1] = dataBulan.getListPegawai().get(i).getAbsensi();
+			data[i][2] = dataBulan.getListPegawai().get(i).getPresensi();
+			data[i][3] = dataBulan.getListPegawai().get(i).getId_rate_gaji();
+			data[i][4] = dataBulan.getListPegawai().get(i).getGajibulanan();
+		}
+		
+        String[] columnNames = {
+            "Nama","Absensi","Presensi","Rate Gaji","Gaji Total"
+            };
+        return new JTable(data, columnNames);
+	}
+	
+	private void showSettingView(){
+		setting.getSettingData();
+		jumlahCuci.setText(setting.getJumlahPegawaiPerKerja().get(0).toString());
+		jumlahMasak.setText(setting.getJumlahPegawaiPerKerja().get(1).toString());
+		jumlahBartender.setText(setting.getJumlahPegawaiPerKerja().get(2).toString());
+		jumlahHall.setText(setting.getJumlahPegawaiPerKerja().get(3).toString());
+		jumlahKasir.setText(setting.getJumlahPegawaiPerKerja().get(4).toString());
+		traineeCuci.setText(setting.getRateGaji().get(0).toString());
+		traineeMasak.setText(setting.getRateGaji().get(1).toString());
+		traineeBartender.setText(setting.getRateGaji().get(2).toString());
+		traineeHall.setText(setting.getRateGaji().get(3).toString());
+		traineeKasir.setText(setting.getRateGaji().get(4).toString());
+		nontraineeCuci.setText(setting.getRateGaji().get(5).toString());
+		nontraineeMasak.setText(setting.getRateGaji().get(6).toString());
+		nontraineeBartender.setText(setting.getRateGaji().get(7).toString());
+		nontraineeHall.setText(setting.getRateGaji().get(8).toString());
+		nontraineeKasir.setText(setting.getRateGaji().get(9).toString());
+	}
+	
+    private void buttonSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSettingActionPerformed
+		setting.setSettingInDB(Integer.valueOf(jumlahCuci.getText()), 
+				Integer.valueOf(jumlahMasak.getText()), 
+				Integer.valueOf(jumlahHall.getText()), 
+				Integer.valueOf(jumlahBartender.getText()), 
+				Integer.valueOf(jumlahKasir.getText()));
+		List<Integer> rateGajiInput = new ArrayList<>();
+		rateGajiInput.add(Integer.valueOf(traineeCuci.getText()));
+		rateGajiInput.add(Integer.valueOf(traineeMasak.getText()));
+		rateGajiInput.add(Integer.valueOf(traineeBartender.getText()));
+		rateGajiInput.add(Integer.valueOf(traineeHall.getText()));
+		rateGajiInput.add(Integer.valueOf(traineeKasir.getText()));
+		rateGajiInput.add(Integer.valueOf(nontraineeCuci.getText()));
+		rateGajiInput.add(Integer.valueOf(nontraineeMasak.getText()));
+		rateGajiInput.add(Integer.valueOf(nontraineeBartender.getText()));
+		rateGajiInput.add(Integer.valueOf(nontraineeHall.getText()));
+		rateGajiInput.add(Integer.valueOf(nontraineeKasir.getText()));
+		setting.setRateGajiInDB(rateGajiInput);
+		showSettingView();
+    }//GEN-LAST:event_buttonSettingActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
            
         String namabaru = nama.getText();
@@ -1286,9 +1356,11 @@ public class FormView extends javax.swing.JFrame {
         tableDataPegawai.setModel(showDataPegawai().getModel());
     }//GEN-LAST:event_jButton1ActionPerformed
 
+
     private void posisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_posisiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_posisiActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -1402,6 +1474,7 @@ public class FormView extends javax.swing.JFrame {
     private javax.swing.JTextField jumlahBartender;
     private javax.swing.JTextField jumlahCuci;
     private javax.swing.JTextField jumlahHall;
+    private javax.swing.JTextField jumlahKasir;
     private javax.swing.JTextField jumlahMasak;
     private javax.swing.JTextField jumlahPegawai;
     private javax.swing.JCheckBox kamismalam;
