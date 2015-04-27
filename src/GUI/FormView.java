@@ -5,6 +5,8 @@ import DataPegawai.*;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -257,9 +259,7 @@ public class FormView extends javax.swing.JFrame {
                 .addComponent(jLabel16)
                 .addGap(91, 91, 91)
                 .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addGap(21, 21, 21))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(viewDataPegawaiLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -798,6 +798,11 @@ public class FormView extends javax.swing.JFrame {
         jLabel7.setText("Presensi : ");
 
         jButton1.setText("Submit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Delete");
 
@@ -1160,9 +1165,10 @@ public class FormView extends javax.swing.JFrame {
         {
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(judul+".pdf"));
             document.open();
-            document.add(new Paragraph(judul));
-            document.add(new Paragraph(jadwalPagi));
-            document.add(new Paragraph(jadwalMalam));
+	    Font theFont = FontFactory.getFont("COURIER", 12);
+            document.add(new Paragraph(judul, theFont));
+            document.add(new Paragraph(jadwalPagi, theFont));
+            document.add(new Paragraph(jadwalMalam, theFont));
             document.close();
             writer.close();
 			JOptionPane.showMessageDialog(null, "Print to PDF Finished");
@@ -1174,6 +1180,10 @@ public class FormView extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_printToPdfActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

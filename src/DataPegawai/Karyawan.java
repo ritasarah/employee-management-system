@@ -13,6 +13,9 @@ public class Karyawan {
     
     private ShiftKerja hariAvailable;
     
+    private int absensi;
+    private int presensi;
+    
     public Karyawan(String inNama, int inNIP, String inHP, String inAlamat, int inRate, ShiftKerja inHari){
 	nama = inNama;
 	nip = inNIP;
@@ -20,6 +23,24 @@ public class Karyawan {
 	alamat = inAlamat;
 	id_rate_gaji = inRate;
 	hariAvailable = inHari;
+	absensi = 0;
+	presensi = 0;
+    }
+
+    public int getAbsensi() {
+	return absensi;
+    }
+
+    public void setAbsensi(int absensi) {
+	this.absensi = absensi;
+    }
+
+    public int getPresensi() {
+	return presensi;
+    }
+
+    public void setPresensi(int presensi) {
+	this.presensi = presensi;
     }
 
     public String getNama() {
