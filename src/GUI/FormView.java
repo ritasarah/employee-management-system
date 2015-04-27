@@ -2,8 +2,14 @@
 package GUI;
 
 import DataPegawai.*;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -59,6 +65,7 @@ public class FormView extends javax.swing.JFrame {
         tableJadwalMalam = new javax.swing.JTable();
         generateJadwal = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox();
+        printToPdf = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -186,7 +193,7 @@ public class FormView extends javax.swing.JFrame {
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +204,7 @@ public class FormView extends javax.swing.JFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("View Gaji", jPanel2);
@@ -248,9 +255,9 @@ public class FormView extends javax.swing.JFrame {
             .addGroup(viewDataPegawaiLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel16)
-                .addGap(52, 52, 52)
+                .addGap(91, 91, 91)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addGap(21, 21, 21))
             .addGroup(viewDataPegawaiLayout.createSequentialGroup()
@@ -325,19 +332,20 @@ public class FormView extends javax.swing.JFrame {
             }
         });
 
+        printToPdf.setText("Print to PDF");
+        printToPdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printToPdfActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel19))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,10 +354,19 @@ public class FormView extends javax.swing.JFrame {
                                 .addComponent(jLabel17)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(generateJadwal)
-                                .addGap(22, 22, 22)))))
-                .addContainerGap(11, Short.MAX_VALUE))
+                                .addGap(79, 79, 79)
+                                .addComponent(generateJadwal))))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel19)))
+                .addContainerGap(180, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(printToPdf)
+                .addGap(191, 191, 191))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,7 +384,9 @@ public class FormView extends javax.swing.JFrame {
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addComponent(printToPdf)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("View Jadwal", jPanel4);
@@ -510,7 +529,7 @@ public class FormView extends javax.swing.JFrame {
                                             .addComponent(jLabel31)
                                             .addComponent(jLabel30)
                                             .addComponent(jLabel29))))
-                                .addGap(0, 14, Short.MAX_VALUE))
+                                .addGap(0, 144, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
                                 .addGap(42, 42, 42)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -649,7 +668,7 @@ public class FormView extends javax.swing.JFrame {
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(nontraineeHall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel51)))
-                        .addContainerGap(22, Short.MAX_VALUE))))
+                        .addContainerGap(44, Short.MAX_VALUE))))
         );
 
         jTabbedPane1.addTab("Settings", jPanel5);
@@ -817,7 +836,7 @@ public class FormView extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jButton1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, Short.MAX_VALUE)
                                         .addComponent(jButton2))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -946,7 +965,7 @@ public class FormView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Form Data Pegawai", jPanel1);
@@ -955,7 +974,9 @@ public class FormView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1058,7 +1079,7 @@ public class FormView extends javax.swing.JFrame {
     }//GEN-LAST:event_tableDataPegawaiMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         String name=JOptionPane.showInputDialog("Enter Info");
+        String name=JOptionPane.showInputDialog("Enter Info");
         tableDataPegawai.getModel().setValueAt(name,tableDataPegawai.getSelectedRow(),tableDataPegawai.getSelectedColumn());
         System.out.println(tableDataPegawai.getSelectedRow()+" "+tableDataPegawai.getSelectedColumn());
         String nama, alamat, noHp;
@@ -1077,6 +1098,82 @@ public class FormView extends javax.swing.JFrame {
             nip = (int)tableDataPegawai.getValueAt(tableDataPegawai.getSelectedRow(), 0);
         kar.deleteKaryawanByID(nip);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void printToPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printToPdfActionPerformed
+        String judul = "Jadwal Pegawai HOLA! Bulan "+jComboBox2.getSelectedItem().toString();
+		Object temp;
+		String res;
+		int i,j;
+
+        String jadwalPagi = "\n\nJadwal Pagi\n";
+        for(i=0;i<7;i++){
+			temp = tableJadwalPagi.getColumnName(i);
+			res = temp.toString();
+			while(res.length() < 10){
+				res += " ";
+			}
+            jadwalPagi += res;
+        }
+        jadwalPagi += "\n";
+        for(i=0;i<jadwal.getTotalKaryawanButuh();i++){
+            for(j=0;j<7;j++){
+				temp = tableJadwalPagi.getValueAt(i,j);
+				if(temp == null){
+					temp = "";
+				}
+				res = temp.toString();
+				while(res.length() < 10){
+					res += " ";
+				}
+                jadwalPagi += res;
+            }
+            jadwalPagi += "\n";
+        }
+
+        String jadwalMalam = "\nJadwal Malam\n";
+        for(i=0;i<7;i++){
+			temp = tableJadwalMalam.getColumnName(i);
+			res = temp.toString();
+			while(res.length() < 10){
+				res += " ";
+			}
+            jadwalMalam += res;
+        }
+        jadwalMalam += "\n";
+        for(i=0;i<jadwal.getTotalKaryawanButuh();i++){
+            for(j=0;j<7;j++){
+				temp = tableJadwalMalam.getValueAt(i,j);
+				if(temp == null){
+					temp = "";
+				}
+				res = temp.toString();
+				while(res.length() < 10){
+					res += " ";
+				}
+                jadwalMalam += res;
+            }
+            jadwalMalam += "\n";
+        }
+
+        Document document = new Document();
+        try
+        {
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(judul+".pdf"));
+            document.open();
+            document.add(new Paragraph(judul));
+            document.add(new Paragraph(jadwalPagi));
+            document.add(new Paragraph(jadwalMalam));
+            document.close();
+            writer.close();
+			JOptionPane.showMessageDialog(null, "Print to PDF Finished");
+        } catch (DocumentException e)
+        {
+            e.printStackTrace();
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_printToPdfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1212,6 +1309,7 @@ public class FormView extends javax.swing.JFrame {
     private javax.swing.JTextField nontraineeHall;
     private javax.swing.JTextField nontraineeKasir;
     private javax.swing.JTextField nontraineeMasak;
+    private javax.swing.JButton printToPdf;
     private javax.swing.JTable tableDataPegawai;
     private javax.swing.JTable tableGaji;
     private javax.swing.JTable tableJadwalMalam;
