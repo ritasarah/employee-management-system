@@ -118,40 +118,40 @@ public class FormView extends javax.swing.JFrame {
         jLabel56 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        nama = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        nohp = new javax.swing.JTextField();
+        alamat = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        seninpagi = new javax.swing.JCheckBox();
+        seninmalam = new javax.swing.JCheckBox();
+        selasamalam = new javax.swing.JCheckBox();
+        selasapagi = new javax.swing.JCheckBox();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
-        jCheckBox11 = new javax.swing.JCheckBox();
-        jCheckBox12 = new javax.swing.JCheckBox();
+        rabupagi = new javax.swing.JCheckBox();
+        rabumalam = new javax.swing.JCheckBox();
+        kamismalam = new javax.swing.JCheckBox();
+        kamispagi = new javax.swing.JCheckBox();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jCheckBox13 = new javax.swing.JCheckBox();
-        jCheckBox15 = new javax.swing.JCheckBox();
-        jCheckBox16 = new javax.swing.JCheckBox();
-        jCheckBox14 = new javax.swing.JCheckBox();
+        jumatpagi = new javax.swing.JCheckBox();
+        jumatmalam = new javax.swing.JCheckBox();
+        sabtumalam = new javax.swing.JCheckBox();
+        sabtupagi = new javax.swing.JCheckBox();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jCheckBox17 = new javax.swing.JCheckBox();
-        jCheckBox19 = new javax.swing.JCheckBox();
-        jTextField4 = new javax.swing.JTextField();
+        minggupagi = new javax.swing.JCheckBox();
+        minggumalam = new javax.swing.JCheckBox();
+        presensi = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jTextField6 = new javax.swing.JTextField();
+        absensi = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -257,9 +257,7 @@ public class FormView extends javax.swing.JFrame {
                 .addComponent(jLabel16)
                 .addGap(91, 91, 91)
                 .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addGap(21, 21, 21))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(viewDataPegawaiLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -676,9 +674,9 @@ public class FormView extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Form Pengisian Data Pegawai");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        nama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                namaActionPerformed(evt);
             }
         });
 
@@ -692,26 +690,26 @@ public class FormView extends javax.swing.JFrame {
 
         jLabel9.setText("Senin");
 
-        jCheckBox8.setText("Pagi");
-        jCheckBox8.addActionListener(new java.awt.event.ActionListener() {
+        seninpagi.setText("Pagi");
+        seninpagi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox8ActionPerformed(evt);
+                seninpagiActionPerformed(evt);
             }
         });
 
-        jCheckBox1.setText("Malam");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        seninmalam.setText("Malam");
+        seninmalam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                seninmalamActionPerformed(evt);
             }
         });
 
-        jCheckBox3.setText("Malam");
+        selasamalam.setText("Malam");
 
-        jCheckBox2.setText("Pagi");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        selasapagi.setText("Pagi");
+        selasapagi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                selasapagiActionPerformed(evt);
             }
         });
 
@@ -719,26 +717,26 @@ public class FormView extends javax.swing.JFrame {
 
         jLabel10.setText("Rabu");
 
-        jCheckBox9.setText("Pagi");
-        jCheckBox9.addActionListener(new java.awt.event.ActionListener() {
+        rabupagi.setText("Pagi");
+        rabupagi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox9ActionPerformed(evt);
+                rabupagiActionPerformed(evt);
             }
         });
 
-        jCheckBox10.setText("Malam");
-        jCheckBox10.addActionListener(new java.awt.event.ActionListener() {
+        rabumalam.setText("Malam");
+        rabumalam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox10ActionPerformed(evt);
+                rabumalamActionPerformed(evt);
             }
         });
 
-        jCheckBox11.setText("Malam");
+        kamismalam.setText("Malam");
 
-        jCheckBox12.setText("Pagi");
-        jCheckBox12.addActionListener(new java.awt.event.ActionListener() {
+        kamispagi.setText("Pagi");
+        kamispagi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox12ActionPerformed(evt);
+                kamispagiActionPerformed(evt);
             }
         });
 
@@ -746,26 +744,26 @@ public class FormView extends javax.swing.JFrame {
 
         jLabel12.setText("Jumat");
 
-        jCheckBox13.setText("Pagi");
-        jCheckBox13.addActionListener(new java.awt.event.ActionListener() {
+        jumatpagi.setText("Pagi");
+        jumatpagi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox13ActionPerformed(evt);
+                jumatpagiActionPerformed(evt);
             }
         });
 
-        jCheckBox15.setText("Malam");
-        jCheckBox15.addActionListener(new java.awt.event.ActionListener() {
+        jumatmalam.setText("Malam");
+        jumatmalam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox15ActionPerformed(evt);
+                jumatmalamActionPerformed(evt);
             }
         });
 
-        jCheckBox16.setText("Malam");
+        sabtumalam.setText("Malam");
 
-        jCheckBox14.setText("Pagi");
-        jCheckBox14.addActionListener(new java.awt.event.ActionListener() {
+        sabtupagi.setText("Pagi");
+        sabtupagi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox14ActionPerformed(evt);
+                sabtupagiActionPerformed(evt);
             }
         });
 
@@ -773,23 +771,23 @@ public class FormView extends javax.swing.JFrame {
 
         jLabel14.setText("Minggu");
 
-        jCheckBox17.setText("Pagi");
-        jCheckBox17.addActionListener(new java.awt.event.ActionListener() {
+        minggupagi.setText("Pagi");
+        minggupagi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox17ActionPerformed(evt);
+                minggupagiActionPerformed(evt);
             }
         });
 
-        jCheckBox19.setText("Malam");
-        jCheckBox19.addActionListener(new java.awt.event.ActionListener() {
+        minggumalam.setText("Malam");
+        minggumalam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox19ActionPerformed(evt);
+                minggumalamActionPerformed(evt);
             }
         });
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        presensi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                presensiActionPerformed(evt);
             }
         });
 
@@ -798,6 +796,11 @@ public class FormView extends javax.swing.JFrame {
         jLabel7.setText("Presensi : ");
 
         jButton1.setText("Submit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Delete");
 
@@ -819,16 +822,16 @@ public class FormView extends javax.swing.JFrame {
                                 .addComponent(jLabel4)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nohp, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(absensi, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
@@ -839,16 +842,16 @@ public class FormView extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, Short.MAX_VALUE)
                                         .addComponent(jButton2))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(presensi, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jCheckBox17)
+                            .addComponent(minggupagi)
                             .addGap(18, 18, 18)
-                            .addComponent(jCheckBox19))
+                            .addComponent(minggumalam))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -872,29 +875,29 @@ public class FormView extends javax.swing.JFrame {
                                     .addGap(18, 18, 18)))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jCheckBox8)
+                                    .addComponent(seninpagi)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jCheckBox1))
+                                    .addComponent(seninmalam))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jCheckBox2)
+                                    .addComponent(selasapagi)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jCheckBox3))
+                                    .addComponent(selasamalam))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jCheckBox9)
+                                    .addComponent(rabupagi)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jCheckBox10))
+                                    .addComponent(rabumalam))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jCheckBox12)
+                                    .addComponent(kamispagi)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jCheckBox11))
+                                    .addComponent(kamismalam))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jCheckBox13)
+                                    .addComponent(jumatpagi)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jCheckBox15))
+                                    .addComponent(jumatmalam))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jCheckBox14)
+                                    .addComponent(sabtupagi)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jCheckBox16))))))
+                                    .addComponent(sabtumalam))))))
                 .addGap(37, 37, 37))
         );
         jPanel1Layout.setVerticalGroup(
@@ -906,61 +909,61 @@ public class FormView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jCheckBox8)
-                        .addComponent(jCheckBox1)
+                        .addComponent(seninpagi)
+                        .addComponent(seninmalam)
                         .addComponent(jLabel5))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nohp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(49, 49, 49)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox3)
+                    .addComponent(selasapagi)
+                    .addComponent(selasamalam)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jCheckBox9)
-                    .addComponent(jCheckBox10))
+                    .addComponent(rabupagi)
+                    .addComponent(rabumalam))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jCheckBox12))
-                    .addComponent(jCheckBox11))
+                        .addComponent(kamispagi))
+                    .addComponent(kamismalam))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jCheckBox13)
-                        .addComponent(jCheckBox15)))
+                        .addComponent(jumatpagi)
+                        .addComponent(jumatmalam)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox16)
-                    .addComponent(jCheckBox14))
+                    .addComponent(sabtumalam)
+                    .addComponent(sabtupagi))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox17)
-                    .addComponent(jCheckBox19))
+                    .addComponent(minggupagi)
+                    .addComponent(minggumalam))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(absensi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(presensi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -986,53 +989,53 @@ public class FormView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox19ActionPerformed
+    private void minggumalamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minggumalamActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox19ActionPerformed
+    }//GEN-LAST:event_minggumalamActionPerformed
 
-    private void jCheckBox17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox17ActionPerformed
+    private void minggupagiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minggupagiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox17ActionPerformed
+    }//GEN-LAST:event_minggupagiActionPerformed
 
-    private void jCheckBox14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox14ActionPerformed
+    private void sabtupagiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sabtupagiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox14ActionPerformed
+    }//GEN-LAST:event_sabtupagiActionPerformed
 
-    private void jCheckBox15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox15ActionPerformed
+    private void jumatmalamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumatmalamActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox15ActionPerformed
+    }//GEN-LAST:event_jumatmalamActionPerformed
 
-    private void jCheckBox13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox13ActionPerformed
+    private void jumatpagiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumatpagiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox13ActionPerformed
+    }//GEN-LAST:event_jumatpagiActionPerformed
 
-    private void jCheckBox12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox12ActionPerformed
+    private void kamispagiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kamispagiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox12ActionPerformed
+    }//GEN-LAST:event_kamispagiActionPerformed
 
-    private void jCheckBox10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox10ActionPerformed
+    private void rabumalamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rabumalamActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox10ActionPerformed
+    }//GEN-LAST:event_rabumalamActionPerformed
 
-    private void jCheckBox9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox9ActionPerformed
+    private void rabupagiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rabupagiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox9ActionPerformed
+    }//GEN-LAST:event_rabupagiActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void selasapagiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selasapagiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_selasapagiActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void seninmalamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seninmalamActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_seninmalamActionPerformed
 
-    private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
+    private void seninpagiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seninpagiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox8ActionPerformed
+    }//GEN-LAST:event_seninpagiActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_namaActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
@@ -1069,9 +1072,9 @@ public class FormView extends javax.swing.JFrame {
         return new JTable(data, columnNames);
 	}
 	
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void presensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_presensiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_presensiActionPerformed
 
     private void tableDataPegawaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDataPegawaiMouseClicked
         // TODO add your handling code here:
@@ -1175,6 +1178,32 @@ public class FormView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_printToPdfActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+        String namabaru = nama.getText();
+        String alamatbaru = alamat.getText();
+        String nohpbaru = nohp.getText();
+        boolean seninpagib= seninpagi.isSelected();
+        boolean seninmalamb= seninmalam.isSelected();
+        boolean selasapagib= selasapagi.isSelected();
+        boolean selasamalamb= selasamalam.isSelected();
+        boolean rabupagib= rabupagi.isSelected();
+        boolean rabumalamb= rabumalam.isSelected();
+        boolean kamispagib= kamispagi.isSelected();
+        boolean kamismalamb= kamismalam.isSelected();
+        boolean jumatpagib= jumatpagi.isSelected();
+        boolean jumatmalamb= jumatmalam.isSelected();
+        boolean sabtupagib= sabtupagi.isSelected();
+        boolean sabtumalamb= sabtumalam.isSelected();
+        boolean minggupagib= minggupagi.isSelected();
+        boolean minggumalamb= minggumalam.isSelected();
+        String absensibaru = absensi.getText();
+        String presensibaru = presensi.getText();
+        
+        
+       
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1211,26 +1240,14 @@ public class FormView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField absensi;
+    private javax.swing.JTextField alamat;
     private javax.swing.JButton buttonSetting;
     private javax.swing.JButton generateJadwal;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox13;
-    private javax.swing.JCheckBox jCheckBox14;
-    private javax.swing.JCheckBox jCheckBox15;
-    private javax.swing.JCheckBox jCheckBox16;
-    private javax.swing.JCheckBox jCheckBox17;
-    private javax.swing.JCheckBox jCheckBox19;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -1294,22 +1311,34 @@ public class FormView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JCheckBox jumatmalam;
+    private javax.swing.JCheckBox jumatpagi;
     private javax.swing.JTextField jumlahBartender;
     private javax.swing.JTextField jumlahCuci;
     private javax.swing.JTextField jumlahHall;
     private javax.swing.JTextField jumlahMasak;
     private javax.swing.JTextField jumlahPegawai;
+    private javax.swing.JCheckBox kamismalam;
+    private javax.swing.JCheckBox kamispagi;
+    private javax.swing.JCheckBox minggumalam;
+    private javax.swing.JCheckBox minggupagi;
+    private javax.swing.JTextField nama;
+    private javax.swing.JTextField nohp;
     private javax.swing.JTextField nontraineeBartender;
     private javax.swing.JTextField nontraineeCuci;
     private javax.swing.JTextField nontraineeHall;
     private javax.swing.JTextField nontraineeKasir;
     private javax.swing.JTextField nontraineeMasak;
+    private javax.swing.JTextField presensi;
     private javax.swing.JButton printToPdf;
+    private javax.swing.JCheckBox rabumalam;
+    private javax.swing.JCheckBox rabupagi;
+    private javax.swing.JCheckBox sabtumalam;
+    private javax.swing.JCheckBox sabtupagi;
+    private javax.swing.JCheckBox selasamalam;
+    private javax.swing.JCheckBox selasapagi;
+    private javax.swing.JCheckBox seninmalam;
+    private javax.swing.JCheckBox seninpagi;
     private javax.swing.JTable tableDataPegawai;
     private javax.swing.JTable tableGaji;
     private javax.swing.JTable tableJadwalMalam;
