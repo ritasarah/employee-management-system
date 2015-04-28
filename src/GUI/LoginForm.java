@@ -1,5 +1,10 @@
 package GUI;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,7 +35,7 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         uname = new javax.swing.JTextField();
-        pw = new javax.swing.JTextField();
+        pw = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,13 +65,6 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
-        pw.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        pw.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pwActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
@@ -82,11 +80,10 @@ public class LoginForm extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
                         .addGap(35, 35, 35)
-                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1)
-                            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(uname)
-                                .addComponent(pw, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)))))
+                            .addComponent(uname, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                            .addComponent(pw))))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
@@ -98,13 +95,13 @@ public class LoginForm extends javax.swing.JFrame {
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(uname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(23, 23, 23)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(pw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -124,9 +121,38 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       String user = uname.getText() ;
+       String userdb = null;
+       String passdb = null;
+        String url = "jdbc:mysql://localhost:3306/employee_management";
+        String driver = "com.mysql.jdbc.Driver";
+        String userName = "root";
+        String password = "";
+        ResultSet res = null;
+	Statement st = null;
+	try {
+	    Class.forName(driver).newInstance();
+	    Connection conn = DriverManager.getConnection(url, userName, password);
+	    st = conn.createStatement();
+	    res = st.executeQuery("SELECT * FROM manager");
+            if (res.next()){
+                userdb = res.getString("username");
+                passdb = res.getString("password");
+            }
+	    conn.close();
+	} catch (SQLException ex) {
+
+	    System.out.println("SQLException: " + ex.getMessage());
+	    System.out.println("SQLState: " + ex.getSQLState());
+	    System.out.println("VendorError: " + ex.getErrorCode());
+
+	} catch (Exception ex) {
+	    System.out.println(ex.toString());
+	}
+
+        String user = uname.getText() ;
        String pass = pw.getText();
-       if((user.contains("admin")) &&( pass.contains("admin")) ){
+
+       if((user.contains(userdb)) &&( pass.contains(passdb)) ){
             dispose();
 
             FormView dialog2 = new FormView();
@@ -139,10 +165,6 @@ public class LoginForm extends javax.swing.JFrame {
     private void unameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_unameActionPerformed
-
-    private void pwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pwActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,7 +207,7 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField pw;
+    private javax.swing.JPasswordField pw;
     private javax.swing.JTextField uname;
     // End of variables declaration//GEN-END:variables
 }
