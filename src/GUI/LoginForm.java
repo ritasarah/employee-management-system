@@ -1,5 +1,10 @@
 package GUI;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
@@ -116,14 +121,38 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    String url = "jdbc:mysql://localhost:3306/employee_management";
-    String driver = "com.mysql.jdbc.Driver";
-    String userName = "root";
-    String password = "";
+       String userdb = null;
+       String passdb = null;
+        String url = "jdbc:mysql://localhost:3306/employee_management";
+        String driver = "com.mysql.jdbc.Driver";
+        String userName = "root";
+        String password = "";
+        ResultSet res = null;
+	Statement st = null;
+	try {
+	    Class.forName(driver).newInstance();
+	    Connection conn = DriverManager.getConnection(url, userName, password);
+	    st = conn.createStatement();
+	    res = st.executeQuery("SELECT * FROM manager");
+            if (res.next()){
+                userdb = res.getString("username");
+                passdb = res.getString("password");
+            }
+	    conn.close();
+	} catch (SQLException ex) {
+
+	    System.out.println("SQLException: " + ex.getMessage());
+	    System.out.println("SQLState: " + ex.getSQLState());
+	    System.out.println("VendorError: " + ex.getErrorCode());
+
+	} catch (Exception ex) {
+	    System.out.println(ex.toString());
+	}
 
         String user = uname.getText() ;
        String pass = pw.getText();
-       if((user.contains("admin")) &&( pass.contains("admin")) ){
+
+       if((user.contains(userdb)) &&( pass.contains(passdb)) ){
             dispose();
 
             FormView dialog2 = new FormView();
