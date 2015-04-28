@@ -22,7 +22,8 @@ public class testDP {
 	    Moon.getListPegawai().get(i).toString();
 	}
 	
-	Moon.countGajiBulanan();
+	Moon.updatePresensi(12, 100, 2);
+	Moon = new Bulan(5);
 	
 	for (int i = 0; i < Moon.getListPegawai().size(); i++){
 	    Moon.getListPegawai().get(i).toString();
