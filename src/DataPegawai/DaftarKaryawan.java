@@ -77,7 +77,8 @@ public class DaftarKaryawan {
 	    while(res.next()){
 		//konstruktur kar String inNama, String inNIP, String inHP, String inAlamat
 		listKaryawan.add(new Karyawan (res.getString("nama"), res.getInt("nip"), res.getString("no_hp"), res.getString("alamat"), res.getInt("id_rate_gaji")));
-	    }
+                System.out.println(listKaryawan.get(listKaryawan.size()-1).getNama());
+            }
 	    conn.close();
 	}
 	catch (SQLException ex){

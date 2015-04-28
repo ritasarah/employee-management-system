@@ -28,6 +28,7 @@ public class Bulan {
     
     public Bulan(int noBulan){
 	setNomor(noBulan);
+	listPegawai = new ArrayList<Karyawan>();
 	setDaftarKaryawanByBulan();
 	System.out.println("Daftar Karyawan of month: " + MonthName() + " updated");
     }
@@ -91,7 +92,7 @@ public class Bulan {
     public void setDaftarKaryawanByBulan(){
 	ResultSet res = null;
 	Statement st = null;
-	listPegawai = new ArrayList<Karyawan>();
+	listPegawai.clear();
 	try{
 	    Class.forName(driver).newInstance();
 	    Connection conn = DriverManager.getConnection(url,userName,password);
@@ -103,6 +104,8 @@ public class Bulan {
 	    
 	    while (res.next()){ //String inNama, int inNIP, String inHP, String inAlamat, int inRate
 		Karyawan temp = new Karyawan(res.getString("nama"), res.getInt("nip"), res.getString("no_hp"), res.getString("alamat"), res.getInt("id_rate_gaji"));
+		temp.setPresensi(res.getInt("presensi"));
+		temp.setAbsensi(res.getInt("absensi"));
 		
 		listPegawai.add(temp);
 		System.out.println(temp.toString());

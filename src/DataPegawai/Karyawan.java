@@ -115,7 +115,7 @@ public class Karyawan {
 
     public String toString(){
 	String karString = "Nama : " + nama + "\nNIP : " + nip + "\nHP : " + no_hp + 
-		"\nAlamat : " + alamat + "\nID Pekerjaan : " + id_rate_gaji + "\nGaji : " + gajibulanan + "\n";
+		"\nAlamat : " + alamat + "\nID Pekerjaan : " + id_rate_gaji + "\nGaji : " + gajibulanan + "\nPresensi : " + presensi + "\n";
 	return karString;
     }
 }
