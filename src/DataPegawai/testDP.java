@@ -17,7 +17,13 @@ public class testDP {
 	ShiftKerja shift = new ShiftKerja();
 	DaftarKaryawan DK = new DaftarKaryawan();
 	Bulan Moon = new Bulan(5);
-	Moon.countGajiBulanan();
+	
+	for (int i = 0; i < Moon.getListPegawai().size(); i++){
+	    Moon.getListPegawai().get(i).toString();
+	}
+	
+	Moon.updatePresensi(12, 100, 2);
+	Moon = new Bulan(5);
 	
 	for (int i = 0; i < Moon.getListPegawai().size(); i++){
 	    Moon.getListPegawai().get(i).toString();
