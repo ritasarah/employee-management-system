@@ -30,6 +30,7 @@ public class Setting {
 	}
 	
 	public void getSettingData(){
+		System.out.println("Get Setting Data");
 		String url = "jdbc:mysql://localhost:3306/employee_management";
 		String driver = "com.mysql.jdbc.Driver";
 		String userName = "root"; 
@@ -39,6 +40,8 @@ public class Setting {
 			Connection conn = DriverManager.getConnection(url,userName,password);
 			Statement st = conn.createStatement();
 			
+			System.out.println("jumlahPegawai="+jumlahPegawaiPerKerja.size()+" rateGaji="+rateGaji.size());
+			
 			ResultSet res = st.executeQuery("Select * from system_setting");
 			if(res.next()){
 				jumlahPegawaiPerKerja.add(res.getInt("min_cuci"));
@@ -47,12 +50,12 @@ public class Setting {
 				jumlahPegawaiPerKerja.add(res.getInt("min_bartender"));
 				jumlahPegawaiPerKerja.add(res.getInt("min_kasir"));
 			}
-			
+			System.out.println("jumlahPegawai="+jumlahPegawaiPerKerja.size()+" rateGaji="+rateGaji.size());
 			res = st.executeQuery("Select * from rate_gaji");
 			while(res.next()){
 				rateGaji.add(res.getInt("nominal"));
 			}
-			
+			System.out.println("jumlahPegawai="+jumlahPegawaiPerKerja.size()+" rateGaji="+rateGaji.size());
 			conn.close();
 		}catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
 		}
