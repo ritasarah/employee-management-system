@@ -163,4 +163,25 @@ public class Bulan {
 	
     }
 	
+    public void updatePresensi(int idKar, int presensi, int absensi){
+	ResultSet res = null;
+	Statement st = null;
+	try{
+	    Class.forName(driver).newInstance();
+	    Connection conn = DriverManager.getConnection(url,userName,password);
+	    st = conn.createStatement();
+	    String sqlQuery = "UPDATE `data_bulanan` SET `presensi` = " + presensi + " , `absensi` = " + absensi + " WHERE `nip_pegawai` = " + idKar + " AND bulan = '" + MonthName() + "'"; 
+	    int resi = st.executeUpdate(sqlQuery);
+	    conn.close();
+	}
+	catch (SQLException ex){
+	    
+	    System.out.println("SQLException: " + ex.getMessage());
+	    System.out.println("SQLState: " + ex.getSQLState());
+	    System.out.println("VendorError: " + ex.getErrorCode());
+	}
+	catch (Exception ex){
+	    System.out.println(ex.toString());
+	}
+    }
 }
