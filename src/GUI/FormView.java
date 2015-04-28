@@ -44,7 +44,9 @@ public class FormView extends javax.swing.JFrame {
                 tableDataPegawai.setModel(showDataPegawai().getModel());
 	
 		tableGaji.setModel(createGajiTable().getModel());
+		ButtonColumn buttonColumn = new ButtonColumn(tableDataPegawai, 5);
 		showSettingView();
+		bulanGajiOnChanged();
 		
     }
 
@@ -192,7 +194,7 @@ public class FormView extends javax.swing.JFrame {
 
         bulanGaji.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Januari", "Febuari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" }));
 
-        editGaji.setText("Edit");
+        editGaji.setText("Ubah");
         editGaji.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editGajiActionPerformed(evt);
@@ -230,7 +232,7 @@ public class FormView extends javax.swing.JFrame {
                 .addContainerGap(227, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("View Gaji", jPanel2);
+        jTabbedPane1.addTab("Daftar Gaji", jPanel2);
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel16.setText("Data Pegawai");
@@ -301,7 +303,7 @@ public class FormView extends javax.swing.JFrame {
                 .addContainerGap(119, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("View Data Pegawai", viewDataPegawai);
+        jTabbedPane1.addTab("Daftar Pegawai", viewDataPegawai);
         viewDataPegawai.getAccessibleContext().setAccessibleName("");
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -341,14 +343,14 @@ public class FormView extends javax.swing.JFrame {
         ));
         jScrollPane5.setViewportView(tableJadwalMalam);
 
-        generateJadwal.setText("Generate");
+        generateJadwal.setText("Buat Jadwal");
         generateJadwal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 generateJadwalActionPerformed(evt);
             }
         });
 
-        printToPdf.setText("Print to PDF");
+        printToPdf.setText("Simpan di PDF");
         printToPdf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 printToPdfActionPerformed(evt);
@@ -365,17 +367,17 @@ public class FormView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel18)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addGap(174, 174, 174)
-                                .addComponent(generateJadwal))))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel19))
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                            .addGap(13, 13, 13)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel18)
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addComponent(jLabel17)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(generateJadwal))))
                         .addComponent(printToPdf)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -384,7 +386,7 @@ public class FormView extends javax.swing.JFrame {
                             .addComponent(jLabel34)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(namaFile))))
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -410,10 +412,10 @@ public class FormView extends javax.swing.JFrame {
                 .addGap(64, 64, 64))
         );
 
-        jTabbedPane1.addTab("View Jadwal", jPanel4);
+        jTabbedPane1.addTab("Daftar Jadwal", jPanel4);
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel20.setText("Settings");
+        jLabel20.setText("Pengaturan");
 
         jLabel21.setText("Jumlah Minimal Kasir : ");
 
@@ -697,10 +699,10 @@ public class FormView extends javax.swing.JFrame {
                         .addContainerGap(44, Short.MAX_VALUE))))
         );
 
-        jTabbedPane1.addTab("Settings", jPanel5);
+        jTabbedPane1.addTab("Pengaturan", jPanel5);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Form Pengisian Data Pegawai");
+        jLabel1.setText("Formulir Pengisian Data Pegawai");
 
         nama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -813,7 +815,7 @@ public class FormView extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Submit");
+        jButton1.setText("Simpan");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -850,9 +852,6 @@ public class FormView extends javax.swing.JFrame {
                             .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nohp, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(minggupagi)
@@ -909,8 +908,11 @@ public class FormView extends javax.swing.JFrame {
                             .addComponent(jLabel28)
                             .addGap(28, 28, 28)
                             .addComponent(posisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jButton1)))
-                .addContainerGap(267, Short.MAX_VALUE))
+                        .addComponent(jButton1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel1)))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -977,7 +979,7 @@ public class FormView extends javax.swing.JFrame {
                 .addContainerGap(129, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Form Data Pegawai", jPanel1);
+        jTabbedPane1.addTab("Formulir Data Pegawai", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1050,13 +1052,15 @@ public class FormView extends javax.swing.JFrame {
     }//GEN-LAST:event_generateJadwalActionPerformed
 
     private JTable showDataPegawai(){
-        Object[][] tempdatakar = new Object [kar.listKaryawan.size()][7];
+        Object[][] tempdatakar = new Object [kar.listKaryawan.size()][6];
         for(int i = 0 ; i<kar.listKaryawan.size();i++){
             tempdatakar[i][0]= kar.listKaryawan.get(i).getNip();
             tempdatakar[i][1]=kar.listKaryawan.get(i).getNama();
             tempdatakar[i][2]=kar.listKaryawan.get(i).getAlamat();
             tempdatakar[i][3]=kar.listKaryawan.get(i).getNo_hp();
-            tempdatakar[i][4]=kar.listKaryawan.get(i).getId_rate_gaji();
+//            tempdatakar[i][4]=setting.getGaji(kar.listKaryawan.get(i).getId_rate_gaji()).getNominal();
+			tempdatakar[i][4]=kar.listKaryawan.get(i).getId_rate_gaji();
+			tempdatakar[i][5]="lihat hari available";
         }
         String[] columnNames = {
                 "NIP","Nama", "Alamat", "No HP", "ID Gaji", "Hari"
@@ -1206,7 +1210,7 @@ public class FormView extends javax.swing.JFrame {
 			data[i][1] = dataBulan.getListPegawai().get(i).getNama();
 			data[i][2] = dataBulan.getListPegawai().get(i).getAbsensi();
 			data[i][3] = dataBulan.getListPegawai().get(i).getPresensi();
-			data[i][4] = dataBulan.getListPegawai().get(i).getId_rate_gaji();
+			data[i][4] = setting.getGaji(dataBulan.getListPegawai().get(i).getId_rate_gaji());
 			data[i][5] = dataBulan.getListPegawai().get(i).getGajibulanan();
 		}
 		
@@ -1232,16 +1236,16 @@ public class FormView extends javax.swing.JFrame {
 		jumlahBartender.setText(setting.getJumlahPegawaiPerKerja().get(2).toString());
 		jumlahHall.setText(setting.getJumlahPegawaiPerKerja().get(3).toString());
 		jumlahKasir.setText(setting.getJumlahPegawaiPerKerja().get(4).toString());
-		traineeCuci.setText(setting.getRateGaji().get(0).toString());
-		traineeMasak.setText(setting.getRateGaji().get(1).toString());
-		traineeBartender.setText(setting.getRateGaji().get(2).toString());
-		traineeHall.setText(setting.getRateGaji().get(3).toString());
-		traineeKasir.setText(setting.getRateGaji().get(4).toString());
-		nontraineeCuci.setText(setting.getRateGaji().get(5).toString());
-		nontraineeMasak.setText(setting.getRateGaji().get(6).toString());
-		nontraineeBartender.setText(setting.getRateGaji().get(7).toString());
-		nontraineeHall.setText(setting.getRateGaji().get(8).toString());
-		nontraineeKasir.setText(setting.getRateGaji().get(9).toString());
+		traineeCuci.setText(String.valueOf(setting.getRateGaji().get(0).getNominal()));
+		traineeMasak.setText(String.valueOf(setting.getRateGaji().get(1).getNominal()));
+		traineeBartender.setText(String.valueOf(setting.getRateGaji().get(2).getNominal()));
+		traineeHall.setText(String.valueOf(setting.getRateGaji().get(3).getNominal()));
+		traineeKasir.setText(String.valueOf(setting.getRateGaji().get(4).getNominal()));
+		nontraineeCuci.setText(String.valueOf(setting.getRateGaji().get(5).getNominal()));
+		nontraineeMasak.setText(String.valueOf(setting.getRateGaji().get(6).getNominal()));
+		nontraineeBartender.setText(String.valueOf(setting.getRateGaji().get(7).getNominal()));
+		nontraineeHall.setText(String.valueOf(setting.getRateGaji().get(8).getNominal()));
+		nontraineeKasir.setText(String.valueOf(setting.getRateGaji().get(9).getNominal()));
 	}
 	
     private void buttonSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSettingActionPerformed
@@ -1350,7 +1354,7 @@ public class FormView extends javax.swing.JFrame {
             nip = (int)tableGaji.getValueAt(tableGaji.getSelectedRow(), 0);
             absen = (int)tableGaji.getValueAt(tableGaji.getSelectedRow(), 2);
             presen = (int)tableGaji.getValueAt(tableGaji.getSelectedRow(), 3);
-//			dataBulan.updatePresensi(nip,presen,absen);
+			dataBulan.updatePresensi(nip,presen,absen);
 		}
 		
 		

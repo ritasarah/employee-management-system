@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class Setting {
 	List<Integer> jumlahPegawaiPerKerja;
-	List<Integer> rateGaji;
+	List<RateGaji> rateGaji;
 	
 	public Setting(){
 		jumlahPegawaiPerKerja = new ArrayList<>();
@@ -25,8 +25,13 @@ public class Setting {
 		return jumlahPegawaiPerKerja;
 	}
 	
-	public List<Integer> getRateGaji(){
+	public List<RateGaji> getRateGaji(){
 		return rateGaji;
+	}
+	
+	
+	public RateGaji getGaji(int idRate){
+		return rateGaji.get(idRate-21);
 	}
 	
 	public void getSettingData(){
@@ -53,7 +58,7 @@ public class Setting {
 			System.out.println("jumlahPegawai="+jumlahPegawaiPerKerja.size()+" rateGaji="+rateGaji.size());
 			res = st.executeQuery("Select * from rate_gaji");
 			while(res.next()){
-				rateGaji.add(res.getInt("nominal"));
+				rateGaji.add(new RateGaji(res.getInt("id"), res.getString("pekerjaan"), res.getString("status"), res.getInt("nominal")));
 			}
 			System.out.println("jumlahPegawai="+jumlahPegawaiPerKerja.size()+" rateGaji="+rateGaji.size());
 			conn.close();
