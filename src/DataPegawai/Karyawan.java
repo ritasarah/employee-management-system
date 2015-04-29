@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,16 +23,6 @@ public class Karyawan {
     private int presensi;
     
     private List<ShiftKerja> hariAvailable;
-    
-
-    public int getGajibulanan() {
-	return gajibulanan;
-    }
-
-    public void setGajibulanan(int gajibulanan) {
-	this.gajibulanan = gajibulanan;
-    }
-    
     private int gajibulanan;
     
     public Karyawan(String inNama, int inNIP, String inHP, String inAlamat, int inRate, List<ShiftKerja> inHari){
@@ -43,6 +34,25 @@ public class Karyawan {
 	hariAvailable = inHari;
 	gajibulanan = 0;
     }
+    public Karyawan(String inNama, int inNIP, String inHP, String inAlamat, int inRate){
+	nama = inNama;
+	nip = inNIP;
+	no_hp = inHP;
+	alamat = inAlamat;
+	id_rate_gaji = inRate;
+	gajibulanan = 0;
+	hariAvailable = new ArrayList<ShiftKerja>();
+    }
+
+    public int getGajibulanan() {
+	return gajibulanan;
+    }
+
+    public void setGajibulanan(int gajibulanan) {
+	this.gajibulanan = gajibulanan;
+    }
+    
+    
 
     public int getAbsensi() {
 	return absensi;
@@ -60,19 +70,44 @@ public class Karyawan {
 	this.presensi = presensi;
     }
     
-    public Karyawan(String inNama, int inNIP, String inHP, String inAlamat, int inRate){
-	nama = inNama;
-	nip = inNIP;
-	no_hp = inHP;
-	alamat = inAlamat;
-	id_rate_gaji = inRate;
-	gajibulanan = 0;
-    }
-
+    
     public String getNama() {
         return nama;
     }       
-
+    
+    public void refreshJadwal(){
+	String url = "jdbc:mysql://localhost:3306/employee_management";
+	String driver = "com.mysql.jdbc.Driver";
+	String userName = "root"; 
+	String password = "";
+	
+	ResultSet res = null;
+	Statement st = null;
+	try{
+	    Class.forName(driver).newInstance();
+	    Connection conn = DriverManager.getConnection(url,userName,password);
+	    st = conn.createStatement(); 
+	    res = st.executeQuery("SELECT * FROM `shift_available_pegawai` WHERE `nip_pegawai` = " + this.nip);
+	    
+	    hariAvailable.clear();
+	    System.out.println("Retrieving shifts for nip " + this.nip);
+	    
+	    while (res.next()){
+		hariAvailable.add(new ShiftKerja(res.getInt("id_shift")));
+	    }
+	    
+	    conn.close();
+	}
+	catch (SQLException ex){
+	    
+	    System.out.println("SQLException: " + ex.getMessage());
+	    System.out.println("SQLState: " + ex.getSQLState());
+	    System.out.println("VendorError: " + ex.getErrorCode());
+	}
+	catch (Exception ex){
+	    System.out.println(ex.toString());
+	}
+    }
     public void setNama(String nama) {
 	this.nama = nama;
     }
@@ -127,7 +162,7 @@ public class Karyawan {
     public String getDaftarJadwal(){
 	String daftar = "";
 	for (ShiftKerja K: hariAvailable){
-	    daftar += "Shift: " + K.getHari() + " " + K.getJam() + " - Pegawai:\n" + this.toString();
+	    daftar += "Shift: " + K.getId() + "\n";
 	}
 	return daftar;
     }
