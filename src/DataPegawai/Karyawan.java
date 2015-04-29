@@ -1,5 +1,10 @@
 package DataPegawai;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 /**
@@ -118,4 +123,47 @@ public class Karyawan {
 		"\nAlamat : " + alamat + "\nID Pekerjaan : " + id_rate_gaji + "\nGaji : " + gajibulanan + "\nPresensi : " + presensi + "\n";
 	return karString;
     }
+    
+    public String getDaftarJadwal(){
+	String daftar = "";
+	for (ShiftKerja K: hariAvailable){
+	    daftar += "Shift: " + K.getHari() + " " + K.getJam() + " - Pegawai:\n" + this.toString();
+	}
+	return daftar;
+    }
+    
+    public void editHariAvailable(List<ShiftKerja> newHaris){
+	String url = "jdbc:mysql://localhost:3306/employee_management";
+	String driver = "com.mysql.jdbc.Driver";
+	String userName = "root"; 
+	String password = "";
+	
+	ResultSet res = null;
+	Statement st = null;
+	try{
+	    Class.forName(driver).newInstance();
+	    Connection conn = DriverManager.getConnection(url,userName,password);
+	    st = conn.createStatement(); 
+	    int resi = st.executeUpdate("DELETE FROM `shift_available_pegawai` WHERE `nip_pegawai` = " + this.nip);
+	    System.out.println("Deleting old shifts.");
+	    for(ShiftKerja SK: newHaris){
+		resi = st.executeUpdate("INSERT INTO `shift_available_pegawai` (`nip_pegawai`,	`id_shift`) VALUES (" + this.nip 
+			+ " , " + SK.getId() + ")");
+		System.out.println(SK.getId());
+	    }
+	    conn.close();
+	    System.out.println("Insert done!");
+	    this.setHariAvailable(newHaris);
+	}
+	catch (SQLException ex){
+	    
+	    System.out.println("SQLException: " + ex.getMessage());
+	    System.out.println("SQLState: " + ex.getSQLState());
+	    System.out.println("VendorError: " + ex.getErrorCode());
+	}
+	catch (Exception ex){
+	    System.out.println(ex.toString());
+	}
+    }
+    
 }
