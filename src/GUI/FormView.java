@@ -25,7 +25,7 @@ import javax.swing.JTable;
  */
 public class FormView extends javax.swing.JFrame {
 	Jadwal jadwal;
-	DaftarKaryawan kar;
+	public static DaftarKaryawan kar;
 	Setting setting;
 	Bulan dataBulan;
 	
@@ -41,9 +41,8 @@ public class FormView extends javax.swing.JFrame {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 		this.setTitle("Employee Management");
-                tableDataPegawai.setModel(showDataPegawai().getModel());
-	
-		tableGaji.setModel(createGajiTable().getModel());
+		
+		tableDataPegawai.setModel(showDataPegawai().getModel());
 		ButtonColumn buttonColumn = new ButtonColumn(tableDataPegawai, 5);
 		showSettingView();
 		bulanGajiOnChanged();
@@ -192,7 +191,7 @@ public class FormView extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tableGaji);
 
-        bulanGaji.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Januari", "Febuari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" }));
+        bulanGaji.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "pilih bulan", "Januari", "Febuari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" }));
 
         editGaji.setText("Ubah");
         editGaji.addActionListener(new java.awt.event.ActionListener() {
@@ -1200,30 +1199,38 @@ public class FormView extends javax.swing.JFrame {
     }//GEN-LAST:event_printToPdfActionPerformed
 
 	private JTable createGajiTable(){
-		dataBulan.setNomor(bulanGaji.getSelectedIndex()+1);
-		dataBulan.setDaftarKaryawanByBulan();
-		Object[][] data = new Object[dataBulan.getListPegawai().size()][6];
-		int i;
-		int j=0;
-		for(i=0;i<dataBulan.getListPegawai().size();i++){
-			data[i][0] = dataBulan.getListPegawai().get(i).getNip();
-			data[i][1] = dataBulan.getListPegawai().get(i).getNama();
-			data[i][2] = dataBulan.getListPegawai().get(i).getAbsensi();
-			data[i][3] = dataBulan.getListPegawai().get(i).getPresensi();
-			data[i][4] = setting.getGaji(dataBulan.getListPegawai().get(i).getId_rate_gaji());
-			data[i][5] = dataBulan.getListPegawai().get(i).getGajibulanan();
+		System.out.println("-create gaji table-");
+		Object[][] data = null;
+		String[] columnNames = {
+				"NIP","Nama","Absensi","Presensi","Rate Gaji","Gaji Total"
+				};
+		if(bulanGaji.getSelectedIndex() != 0){
+			int indexBulan = bulanGaji.getSelectedIndex();
+			dataBulan.setNomor(indexBulan);
+			System.out.println("bulan="+indexBulan);
+			dataBulan.setDaftarKaryawanByBulan();
+			System.out.println("list pegawai size="+dataBulan.getListPegawai().size());
+			data = new Object[dataBulan.getListPegawai().size()][6];
+			int i;
+			int j=0;
+			for(i=0;i<dataBulan.getListPegawai().size();i++){
+				data[i][0] = dataBulan.getListPegawai().get(i).getNip();
+				data[i][1] = dataBulan.getListPegawai().get(i).getNama();
+				data[i][2] = dataBulan.getListPegawai().get(i).getAbsensi();
+				data[i][3] = dataBulan.getListPegawai().get(i).getPresensi();
+				data[i][4] = setting.getGaji(dataBulan.getListPegawai().get(i).getId_rate_gaji());
+				data[i][5] = dataBulan.getListPegawai().get(i).getGajibulanan();
+			}
 		}
-		
-        String[] columnNames = {
-            "NIP","Nama","Absensi","Presensi","Rate Gaji","Gaji Total"
-            };
-        return new JTable(data, columnNames);
+		return new JTable(data, columnNames);
 	}
 	
 	private void bulanGajiOnChanged(){
 		bulanGaji.addActionListener (new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
-				tableGaji.setModel(createGajiTable().getModel());
+				if(bulanGaji.getSelectedIndex() != 0){
+					tableGaji.setModel(createGajiTable().getModel());
+				}
 			}
 		});
 	}

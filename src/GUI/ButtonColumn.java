@@ -34,6 +34,8 @@ public class ButtonColumn extends AbstractCellEditor
 	private Object editorValue;
 	private boolean isButtonColumnEditor;
 	
+	private ShiftAvailable sa;
+	
 
 	/**
 	 *  Create the ButtonColumn to be used as a renderer and editor. The
@@ -47,6 +49,7 @@ public class ButtonColumn extends AbstractCellEditor
 	 */
 	public ButtonColumn(JTable table, int column){
 		this.table = table;
+		sa = new ShiftAvailable();
 
 		renderButton = new JButton();
 		editButton = new JButton();
@@ -188,7 +191,7 @@ public class ButtonColumn extends AbstractCellEditor
 		fireEditingStopped();
 
 		//  Invoke the Action
-		ShiftAvailable sa = new ShiftAvailable();
+		sa.initShiftAvailable(Integer.valueOf(table.getValueAt(table.getSelectedRow(), 0).toString()));
 		sa.setVisible(true);
 	}
 

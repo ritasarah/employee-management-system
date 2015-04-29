@@ -1,21 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package GUI;
+
+import DataPegawai.DaftarKaryawan;
+import DataPegawai.ShiftKerja;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
- * @author Anggi
+ * @author Cilvia
  */
 public class ShiftAvailable extends javax.swing.JFrame {
-
+	int idPegawai;
+	DaftarKaryawan datakar;
+	List<ShiftKerja> listShiftAvailable;
+	
 	/**
 	 * Creates new form ShiftAvailable
 	 */
 	public ShiftAvailable() {
+		datakar = new DaftarKaryawan();
+		listShiftAvailable = new ArrayList<>();
 		initComponents();
 	}
 
@@ -51,7 +55,8 @@ public class ShiftAvailable extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         seninpagi = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -154,7 +159,14 @@ public class ShiftAvailable extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Ubah");
+        editButton.setText("Ubah");
+
+        cancelButton.setText("Batal");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -214,7 +226,9 @@ public class ShiftAvailable extends javax.swing.JFrame {
                 .addContainerGap(98, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(cancelButton)
+                .addGap(18, 18, 18)
+                .addComponent(editButton)
                 .addGap(45, 45, 45))
         );
         jPanel1Layout.setVerticalGroup(
@@ -258,7 +272,9 @@ public class ShiftAvailable extends javax.swing.JFrame {
                     .addComponent(minggupagi)
                     .addComponent(minggumalam))
                 .addGap(38, 38, 38)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editButton)
+                    .addComponent(cancelButton))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -278,6 +294,45 @@ public class ShiftAvailable extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+	public void initShiftAvailable(int idPegawai){
+		this.idPegawai = idPegawai;
+		System.out.println("-init shift available-");
+		listShiftAvailable.clear();
+		listShiftAvailable = FormView.kar.getKaryawanByID(idPegawai).getHariAvailable();
+		System.out.println("shift available size="+listShiftAvailable.size());
+		for(ShiftKerja sk: listShiftAvailable){
+			if(sk.getId() == 1){
+				seninpagi.setSelected(true);
+			} else if(sk.getId() == 2){
+				seninmalam.setSelected(true);
+			} else if(sk.getId() == 3){
+				selasapagi.setSelected(true);
+			} else if(sk.getId() == 4){
+				selasamalam.setSelected(true);
+			} else if(sk.getId() == 5){
+				rabupagi.setSelected(true);
+			} else if(sk.getId() == 6){
+				rabumalam.setSelected(true);
+			} else if(sk.getId() == 7){
+				kamispagi.setSelected(true);
+			} else if(sk.getId() == 8){
+				kamismalam.setSelected(true);
+			} else if(sk.getId() == 9){
+				jumatpagi.setSelected(true);
+			} else if(sk.getId() == 10){
+				jumatmalam.setSelected(true);
+			} else if(sk.getId() == 11){
+				sabtupagi.setSelected(true);
+			} else if(sk.getId() == 12){
+				sabtumalam.setSelected(true);
+			} else if(sk.getId() == 13){
+				minggupagi.setSelected(true);
+			} else if(sk.getId() == 14){
+				minggumalam.setSelected(true);
+			}
+		}
+	}
+	
     private void seninmalamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seninmalamActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_seninmalamActionPerformed
@@ -322,43 +377,14 @@ public class ShiftAvailable extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_seninpagiActionPerformed
 
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-		 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(ShiftAvailable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(ShiftAvailable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(ShiftAvailable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(ShiftAvailable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		}
-        //</editor-fold>
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+		setVisible(false);
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
-		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new ShiftAvailable().setVisible(true);
-			}
-		});
-	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JButton editButton;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

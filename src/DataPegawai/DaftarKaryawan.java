@@ -119,6 +119,7 @@ public class DaftarKaryawan {
 	
 	return new Karyawan("Empty", 0, "Empty", "Empty", 12);
     }
+	
     public void deleteKaryawanByID(int ID){
 	boolean found = false;
 	int index = 0;
