@@ -47,7 +47,9 @@ public class testDP {
 	moo.countGajiBulanan();
 	List<Karyawan> lika = moo.getListPegawai();
 	for (Karyawan Kar : lika){
-	    Kar.editHariAvailable(lishift);
+	    //Kar.editHariAvailable(lishift);
+	    //System.out.println(Kar.getDaftarJadwal());
+	    Kar.refreshJadwal();
 	    System.out.println(Kar.getDaftarJadwal());
 	}
     }

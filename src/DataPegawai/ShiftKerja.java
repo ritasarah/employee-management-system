@@ -47,6 +47,17 @@ public class ShiftKerja {
 		jam = j;
 		hari = h;
 	}
+	
+	public ShiftKerja(int _id){
+		listOfKaryawan = new ArrayList<>();
+		listKaryawanAvailable = new ArrayList<>();
+		karyawanCuci = new ArrayList<>();
+		karyawanMasak = new ArrayList<>();
+		karyawanHall = new ArrayList<>();
+		karyawanBartender = new ArrayList<>();
+		karyawanKasir = new ArrayList<>();
+		id = _id;
+	}
 
 	public List<Integer> getListKaryawanAvailable() {
 		return listKaryawanAvailable;
