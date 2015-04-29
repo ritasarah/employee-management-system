@@ -280,6 +280,8 @@ public class FormView extends javax.swing.JFrame {
                 .addComponent(jLabel16)
                 .addGap(91, 91, 91)
                 .addComponent(jButton3)
+                .addComponent(jButton4)
+                .addGap(21,21,21)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(viewDataPegawaiLayout.createSequentialGroup()
                 .addContainerGap()

@@ -1,6 +1,7 @@
 package GUI;
 
 import DataPegawai.DaftarKaryawan;
+import DataPegawai.Karyawan;
 import DataPegawai.ShiftKerja;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ public class ShiftAvailable extends javax.swing.JFrame {
 	int idPegawai;
 	DaftarKaryawan datakar;
 	List<ShiftKerja> listShiftAvailable;
+	Karyawan karyawan;
 	
 	/**
 	 * Creates new form ShiftAvailable
@@ -160,8 +162,13 @@ public class ShiftAvailable extends javax.swing.JFrame {
         });
 
         editButton.setText("Ubah");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
 
-        cancelButton.setText("Batal");
+        cancelButton.setText("Keluar");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
@@ -298,7 +305,9 @@ public class ShiftAvailable extends javax.swing.JFrame {
 		this.idPegawai = idPegawai;
 		System.out.println("-init shift available-");
 		listShiftAvailable.clear();
-		listShiftAvailable = FormView.kar.getKaryawanByID(idPegawai).getHariAvailable();
+		karyawan = FormView.kar.getKaryawanByID(idPegawai);
+		karyawan.refreshJadwal();
+		listShiftAvailable = karyawan.getHariAvailable();
 		System.out.println("shift available size="+listShiftAvailable.size());
 		for(ShiftKerja sk: listShiftAvailable){
 			if(sk.getId() == 1){
@@ -378,8 +387,71 @@ public class ShiftAvailable extends javax.swing.JFrame {
     }//GEN-LAST:event_seninpagiActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-		setVisible(false);
+		this.setVisible(false);
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+		boolean seninpagib= seninpagi.isSelected();
+        boolean seninmalamb= seninmalam.isSelected();
+        boolean selasapagib= selasapagi.isSelected();
+        boolean selasamalamb= selasamalam.isSelected();
+        boolean rabupagib= rabupagi.isSelected();
+        boolean rabumalamb= rabumalam.isSelected();
+        boolean kamispagib= kamispagi.isSelected();
+        boolean kamismalamb= kamismalam.isSelected();
+        boolean jumatpagib= jumatpagi.isSelected();
+        boolean jumatmalamb= jumatmalam.isSelected();
+        boolean sabtupagib= sabtupagi.isSelected();
+        boolean sabtumalamb= sabtumalam.isSelected();
+        boolean minggupagib= minggupagi.isSelected();
+        boolean minggumalamb= minggumalam.isSelected();
+        
+        List<ShiftKerja> listkerja = new ArrayList<>();
+        if(seninpagib){
+            listkerja.add(new ShiftKerja(1, "pagi", "senin"));
+        }
+        if(seninmalamb){
+            listkerja.add(new ShiftKerja(2,"malam", "senin"));
+        }
+        if(selasapagib){
+            listkerja.add(new ShiftKerja(3, "pagi", "selasa"));
+        }
+        if(selasamalamb){
+            listkerja.add(new ShiftKerja(4,"malam", "selasa"));
+        }
+        if(rabupagib){
+            listkerja.add(new ShiftKerja(5, "pagi", "rabu"));
+        }
+        if(rabumalamb){
+            listkerja.add(new ShiftKerja(6,"malam", "rabu"));
+        }
+        if(kamispagib){
+            listkerja.add(new ShiftKerja(7, "pagi", "kamis"));
+        }
+        if(kamismalamb){
+            listkerja.add(new ShiftKerja(8,"malam", "kamis"));
+        }
+        if(jumatpagib){
+            listkerja.add(new ShiftKerja(9, "pagi", "jumat"));
+        }
+        if(jumatmalamb){
+            listkerja.add(new ShiftKerja(10,"malam", "jumat"));
+        }
+        if(sabtupagib){
+            listkerja.add(new ShiftKerja(11, "pagi", "sabtu"));
+        }
+        if(sabtumalamb){
+            listkerja.add(new ShiftKerja(12,"malam", "sabtu"));
+        }
+        if(minggupagib){
+            listkerja.add(new ShiftKerja(13, "pagi", "minggu"));
+        }
+        if(minggumalamb){
+            listkerja.add(new ShiftKerja(14,"malam", "minggu"));
+        }
+		
+		karyawan.editHariAvailable(listkerja);
+    }//GEN-LAST:event_editButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
