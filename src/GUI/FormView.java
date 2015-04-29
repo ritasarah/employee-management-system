@@ -205,18 +205,17 @@ public class FormView extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bulanGaji, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)
-                        .addComponent(editGaji)))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bulanGaji, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(editGaji)
+                .addGap(54, 54, 54))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,7 +227,7 @@ public class FormView extends javax.swing.JFrame {
                     .addComponent(editGaji))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Daftar Gaji", jPanel2);
@@ -281,8 +280,6 @@ public class FormView extends javax.swing.JFrame {
                 .addComponent(jLabel16)
                 .addGap(91, 91, 91)
                 .addComponent(jButton3)
-                .addComponent(jButton4)
-                .addGap(21,21,21)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(viewDataPegawaiLayout.createSequentialGroup()
                 .addContainerGap()
@@ -362,30 +359,38 @@ public class FormView extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel19))
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                            .addGap(13, 13, 13)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel18)
-                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addComponent(jLabel17)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(generateJadwal))))
-                        .addComponent(printToPdf)
+                        .addContainerGap()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane4))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel19)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel34)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(namaFile))))
-                .addContainerGap(180, Short.MAX_VALUE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel17))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel34)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(namaFile)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(printToPdf)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(generateJadwal)
+                                .addGap(25, 25, 25)))))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,18 +402,17 @@ public class FormView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel19)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(namaFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel34))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(printToPdf)
-                .addGap(64, 64, 64))
+                    .addComponent(jLabel34)
+                    .addComponent(printToPdf))
+                .addGap(94, 94, 94))
         );
 
         jTabbedPane1.addTab("Daftar Jadwal", jPanel4);
@@ -835,16 +839,17 @@ public class FormView extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(125, 125, 125)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
+                                .addGap(22, 22, 22)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -859,13 +864,13 @@ public class FormView extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(53, 53, 53)
+                                    .addGap(8, 8, 8)
                                     .addComponent(jLabel5)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(jLabel9)
                                     .addGap(23, 23, 23))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addContainerGap()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel10)
                                         .addComponent(jLabel8)
@@ -903,20 +908,18 @@ public class FormView extends javax.swing.JFrame {
                                     .addGap(18, 18, 18)
                                     .addComponent(sabtumalam))))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(53, 53, 53)
+                            .addGap(8, 8, 8)
                             .addComponent(jLabel28)
                             .addGap(28, 28, 28)
                             .addComponent(posisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jButton1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel1)))
-                .addContainerGap(256, Short.MAX_VALUE))
+                    .addComponent(jLabel1))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -975,7 +978,7 @@ public class FormView extends javax.swing.JFrame {
                     .addComponent(jLabel28))
                 .addGap(28, 28, 28)
                 .addComponent(jButton1)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Formulir Data Pegawai", jPanel1);
@@ -1202,7 +1205,7 @@ public class FormView extends javax.swing.JFrame {
 		System.out.println("-create gaji table-");
 		Object[][] data = null;
 		String[] columnNames = {
-				"NIP","Nama","Absensi","Presensi","Rate Gaji","Gaji Total"
+				"NIP","Nama","Status","Posisi","Absensi","Presensi","Rate Gaji","Gaji Total"
 				};
 		if(bulanGaji.getSelectedIndex() != 0){
 			int indexBulan = bulanGaji.getSelectedIndex();
@@ -1210,16 +1213,18 @@ public class FormView extends javax.swing.JFrame {
 			System.out.println("bulan="+indexBulan);
 			dataBulan.setDaftarKaryawanByBulan();
 			System.out.println("list pegawai size="+dataBulan.getListPegawai().size());
-			data = new Object[dataBulan.getListPegawai().size()][6];
+			data = new Object[dataBulan.getListPegawai().size()][8];
 			int i;
 			int j=0;
 			for(i=0;i<dataBulan.getListPegawai().size();i++){
 				data[i][0] = dataBulan.getListPegawai().get(i).getNip();
 				data[i][1] = dataBulan.getListPegawai().get(i).getNama();
-				data[i][2] = dataBulan.getListPegawai().get(i).getAbsensi();
-				data[i][3] = dataBulan.getListPegawai().get(i).getPresensi();
-				data[i][4] = setting.getGaji(dataBulan.getListPegawai().get(i).getId_rate_gaji());
-				data[i][5] = dataBulan.getListPegawai().get(i).getGajibulanan();
+				data[i][2] = setting.getGaji(dataBulan.getListPegawai().get(i).getId_rate_gaji()).getStatus();
+				data[i][3] = setting.getGaji(dataBulan.getListPegawai().get(i).getId_rate_gaji()).getPekerjaan();
+				data[i][4] = dataBulan.getListPegawai().get(i).getAbsensi();
+				data[i][5] = dataBulan.getListPegawai().get(i).getPresensi();
+				data[i][6] = setting.getGaji(dataBulan.getListPegawai().get(i).getId_rate_gaji()).getNominal();
+				data[i][7] = dataBulan.getListPegawai().get(i).getGajibulanan();
 			}
 		}
 		return new JTable(data, columnNames);
@@ -1352,18 +1357,17 @@ public class FormView extends javax.swing.JFrame {
     }//GEN-LAST:event_posisiActionPerformed
 
     private void editGajiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editGajiActionPerformed
-		String name=JOptionPane.showInputDialog("Enter Info");
-        tableGaji.getModel().setValueAt(name,tableGaji.getSelectedRow(),tableGaji.getSelectedColumn());
         System.out.println(tableGaji.getSelectedRow()+" "+tableDataPegawai.getSelectedColumn());
        
         int nip, absen,presen;
 		if(tableGaji.getSelectedColumn() == 1  || tableGaji.getSelectedColumn() == 2  ){
+			String name=JOptionPane.showInputDialog("Enter Info");
+			tableGaji.getModel().setValueAt(name,tableGaji.getSelectedRow(),tableGaji.getSelectedColumn());
             nip = (int)tableGaji.getValueAt(tableGaji.getSelectedRow(), 0);
-            absen = (int)tableGaji.getValueAt(tableGaji.getSelectedRow(), 2);
-            presen = (int)tableGaji.getValueAt(tableGaji.getSelectedRow(), 3);
+            absen = (int)tableGaji.getValueAt(tableGaji.getSelectedRow(), 4);
+            presen = (int)tableGaji.getValueAt(tableGaji.getSelectedRow(), 5);
 			dataBulan.updatePresensi(nip,presen,absen);
 		}
-		
 		
     }//GEN-LAST:event_editGajiActionPerformed
 
